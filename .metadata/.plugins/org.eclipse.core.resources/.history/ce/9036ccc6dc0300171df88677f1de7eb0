@@ -12,7 +12,7 @@ public class testAnimal {
 	
 	public static void main(String[] args) {
 		// Deeclare an instance of your class
-		Animal a = new Animal(2, 45);
+		Animal a = new Anima(2, 45);
 		Cat b = new Cat(4, 5, "Persian");
 		
 		// Example of calling getters

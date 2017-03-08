@@ -32,7 +32,7 @@ public class Manager extends Employee {
 	}
 	
 	/**
-	 * standard clone
+	 * stanard clone
 	 */
 	public Manager clone()
 	{

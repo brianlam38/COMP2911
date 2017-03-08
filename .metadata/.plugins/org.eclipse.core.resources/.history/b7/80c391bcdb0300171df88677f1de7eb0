@@ -12,9 +12,7 @@ public class Test {
 	{
 		// Using the Employee class to declare Manager object.
 		Employee e = new Manager("Brad", 100000, Calendar.getInstance());
-		System.out.println(e);
+		System.out.println(e); // e is an object
 		Employee f = new Employee("Alan", 50000);
-		System.out.println(f);
-		System.out.println(f.toString());
 	}
 }

@@ -39,7 +39,7 @@ public class Employee implements Cloneable { // implements = "This class is now 
 	 * standard equals
 	 * "These employees are equal if they have the same name and salary"
 	 */
-	public boolean equals(Object other)
+	public equals(Object other)	// Class for testing Employee / Manager + tests for methods
 	{
 		if (this == other) return true;
 		if (other == null) return false;
@@ -49,7 +49,7 @@ public class Employee implements Cloneable { // implements = "This class is now 
 	}
 	
 	/**
-	 * standard clone method for top-level hierarchy
+	 * standard clone method for top-level heirarchy
 	 */
 	public Employee clone()
 	{
