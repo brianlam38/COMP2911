@@ -1,0 +1,13 @@
+/**
+ * Simple program to test employee
+ * @author brianlam
+ *
+ */
+
+public class Test {
+	
+	public static void main(String[] args)
+	{
+		Employee e = new Employee("Brad", 100000); // Using the Employee class
+	}
+}

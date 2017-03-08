@@ -1,0 +1,14 @@
+/**
+ *  Inheritance example
+ * 
+ * 	UML
+ *  There are "six arrows to remember"
+ * 
+ */
+
+import java.util.Calendar;
+
+public class Manager extends Employee {
+	
+	private Calendar hireDate;
+}

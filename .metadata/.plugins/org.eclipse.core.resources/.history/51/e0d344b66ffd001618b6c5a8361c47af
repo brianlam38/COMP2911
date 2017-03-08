@@ -1,0 +1,28 @@
+/**
+ * Simple class to represent an employee 
+ * @author Brian Lam 
+ *
+ */
+
+public class Employee {
+	private String name;
+	private int salary;
+	
+	public Employee(String name, int salary)
+	{
+		this.name = name;
+		this.salary = salary;
+	}
+	
+	/**
+	 * Method to return an employee's salary
+	 * @return int
+	 */
+	
+	public int getSalary()
+	{
+		return salary;
+	}
+	
+	
+}
