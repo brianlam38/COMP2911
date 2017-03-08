@@ -29,9 +29,18 @@
 		// E.g. Employee e1 = new Employee;
 		//      e1.getSalary();
 	// Common oeprations like:
-		// equals - input another object, method tells us if it is equal to our current object
-		// toString - prints the main info of the object
-		// clone - duplicate the current object
+		// 1. equals - input another object, method tells us if it is equal to our current object
+		Public boolean equals(Object o) {
+			if (o.getClass().getName() == this.getClass().getName()) { // compare classes to see if they're the same
+				// now compare attributes
+			} else {
+				return false;
+			}
+		}
+		// 2. toString - prints the main info of the object
+
+
+		// 3. clone - duplicate the current object
 	Public Employee clone() { // pseudocode
 		// clone returns a copy of whatever you're calling it on
 		// You will return a copy of Employee with its attributes
@@ -45,5 +54,19 @@
 		// int a = 8, int b = a;
 		// both a and b = 8.
 		// However if you change b = 6, then a = 8 and b = 6. (a is not affected)
+	
+!!! WE ARE ALLOWED TO WRITE JAVA USING OUR OWN SYNTAX, AS LONG AS IT IS CORRECT (DUH) !!!
+
+// INHERITANCE
+// Classes can inherit properties frmo other classes
+	// Object class is the parent of all classes
+	// All classes by default inherit frmo this class
+// Child classes inherit all members/methods fmo their parents
+
+// GENERAL TIPS
+// Get used to java ASAP (week 1 and 2 labs are helpful for basic OOP syntax)
+// Labs should be top priority.
+
+
 
 

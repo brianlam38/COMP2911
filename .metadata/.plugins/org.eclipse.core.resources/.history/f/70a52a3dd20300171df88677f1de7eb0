@@ -1,0 +1,7 @@
+package labwork;
+import java.util.Calendar;
+
+public class Manager extends Employee {
+	
+	
+}

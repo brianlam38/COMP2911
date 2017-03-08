@@ -1,0 +1,7 @@
+package labwork;
+import java.util.Calendar;
+
+public class Manager extends Employee { // a subtype of Employee
+	
+	private Calendar hireDate; // private field for manager's hire date
+}
