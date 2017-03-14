@@ -1,0 +1,7 @@
+import java.util.*;
+
+public class BankAccountTester {
+	public statc void main(String [] args) {
+		BankAccount b = new InternetAccount;
+	}
+}

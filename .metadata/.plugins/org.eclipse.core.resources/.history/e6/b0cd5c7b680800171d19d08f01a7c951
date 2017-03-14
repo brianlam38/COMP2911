@@ -1,0 +1,25 @@
+import java.util.*;
+
+/**
+ * Simple class to implement a bank account
+ * @author brianlam
+ *
+ */
+
+public class BankAccount {
+	private int balance;
+	
+	public BankAccount() {
+		this.balance = 0;
+	}
+	
+	/**
+	 * deposit amount into bank account
+	 * @param amount > 0
+	 * @pre
+	 */
+	
+	public deposit(int amount) {
+		balance += amount;
+	}
+}

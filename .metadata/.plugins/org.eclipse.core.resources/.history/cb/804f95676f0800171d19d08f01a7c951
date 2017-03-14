@@ -1,0 +1,24 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class BankAccountTest {
+	
+	// 3 stubs: BankAccount constructor, Deposit method, Withdraw method
+	@Test
+	public void testBankAccount() {
+		BankAccount b = new BankAccount();
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDeposit() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testWithdraw() {
+		fail("Not yet implemented");
+	}
+
+}

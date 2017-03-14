@@ -1,0 +1,11 @@
+import java.util.*;
+
+/**
+ * Simple class to implement an Internet Account
+ * @author brianlam
+ *
+ */
+
+public class internetAccount extends BankAccount {
+
+}

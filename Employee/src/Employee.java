@@ -45,7 +45,7 @@ public class Employee implements Cloneable { // implements = "This class is now 
 		if (other == null) return false;
 		if (getClass() != other.getClass()) return false;
 		Employee otherEmployee = (Employee) other;
-		return name.equals(other) && salary == other.salary;
+		return name.equals(other) && salary == ((Employee) other).salary;
 	}
 	
 	/**

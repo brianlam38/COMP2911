@@ -1,0 +1,14 @@
+import java.util.*;
+
+/**
+ * Simple class to implement an Internet Account
+ * @author brianlam
+ * @invariant
+ */
+
+public class internetAccount extends BankAccount {
+	
+	public deposit(int amount) {
+		
+	}
+}
