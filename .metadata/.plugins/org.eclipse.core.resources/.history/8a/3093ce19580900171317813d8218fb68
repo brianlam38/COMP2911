@@ -1,0 +1,45 @@
+import java.util.*;
+
+/**
+ * This is a Bank Account
+ * @author brianlam
+ * Declare invariants here
+ * @invariant blahblah
+ */
+
+public class BankAccount {
+	
+	int balance;
+	int limit;
+	
+	// Constructor for creating new bank account
+	public BankAccount() {
+		this.balance = 0;
+	}
+	
+	public void limit() {
+		this.limit = 800;
+	}
+	
+	public void deposits(int amount) {
+		balance += amount;
+	}
+	
+	/**
+	 * Withdraw money from account
+	 * @param amount
+	 * @pre (balance > 0) and (amount >= balance)
+	 * @post balance <= 0
+	 */
+	
+	public void withdraw(int amount) {
+		if (limit - amount == 0) {
+			
+		}
+		balance -= amount;
+	}
+	
+	public int getBalance() {
+		return balance;
+	}
+}
