@@ -4727,3 +4727,13 @@ Java Model Exception: Java Model Status [<project root> [in BankAccount] is not 
 
 !ENTRY org.eclipse.jface.text 2 0 2017-03-14 14:39:56.203
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2017-03-15 18:02:51.042 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/brianlam/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/brianlam/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2017-03-15 18:03:28.578
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
