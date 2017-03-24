@@ -16,8 +16,8 @@ public class BankAccount {
 	/**
 	 * deposit amount into bank account
 	 * @param amount
-	 * @pre (amount > 0)
-	 * @post (balance >= 0)
+	 * @pre amount > 0
+	 * @post balance >= 0
 	 */
 	
 	public void deposit(int amount) {
