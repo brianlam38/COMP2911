@@ -1,0 +1,52 @@
+import java.util.ArrayList;
+
+/**
+ * An implementation of a set using an ArrayList
+ * @author brianlam
+ * @invariant all elements of the ArrayList are distinct
+ * @param <E> uses a generic type so any object can be declared
+ */
+
+public class ArrayListSet<E> implements Set<E>, Cloneable {
+	private ArrayList<E> setElements;
+	
+	public ArrayListSet() {
+		if (!setElements.contains(e))
+			setElements = new ArrayList<E>();
+	}
+	
+	public boolean contains(E e) {
+		return setElements.contains(e);
+	}
+	
+	public void add(E e) {
+		setElements.add(e);
+	}
+	
+	public void remove(E e) {
+		setElements.remove(e);
+	}
+	
+	public union(Set<E> secondSet) {
+		
+	}
+	
+	public intersection(Set<E> secondSet){
+		
+	}
+	
+	public boolean contains(Object e) {
+		return setElements.contains(e);
+	}
+	
+	public boolean equals(Object o) {
+		if (this == o) return true;	// if its an object, ret TRUE
+		if (o == null) return false; // if not an object, ret FALSE
+		// if (getClass() != o.getClass()) return false;
+		if (!(o instanceof Set)) return false;
+		Set<?> other = (Set<?>) o;
+		if (size() != other.size()) return false;
+		return containsAll(other);
+		
+	}
+}

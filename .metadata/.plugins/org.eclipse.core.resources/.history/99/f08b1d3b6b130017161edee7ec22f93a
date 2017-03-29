@@ -1,0 +1,25 @@
+
+/**
+ * An implementation of a set using an ArrayList
+ * @author brianlam
+ * @invariant all elements of the ArrayList are distinct
+ * @param <E> uses a generic
+ */
+
+public class ArrayListSet<E> implements Set<E>, Cloneable {
+	private ArrayList<E> setElements;
+	
+	public ArrayListSet() {
+		setElements = new ArrayList<E>();
+	}
+	
+	public void add(E e) {
+		
+	}
+	
+	public void remove(E e) {
+		
+	}
+	
+	public union(Set<E>)
+}

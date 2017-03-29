@@ -1,0 +1,18 @@
+/**
+ * Simple tester for our set implementation.
+ * @author brianlam
+ *
+ */
+
+public class SetTester {
+	
+	public static void main(String[] args) {
+		ArrayListSet<Fruit> setOne = new ArrayListSet<>();
+		setOne.add(new Apple("apple1"));
+		
+		ArrayListSet<Fruit> setTwo = new ArrayListSet<>();
+		setTwo.add(new Apple("apple2"));
+		
+		Set<E> setThree = setOne.union(setTwo);
+	}
+}

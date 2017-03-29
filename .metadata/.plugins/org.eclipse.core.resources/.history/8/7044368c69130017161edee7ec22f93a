@@ -1,0 +1,17 @@
+import java.util.*;
+
+/**
+ * Interface for a set
+ * @author brianlam
+ *
+ */
+
+public interface Set<E> extends Iterable<E> {
+	public void add(E e);
+	public void remove(E e);
+	public Set<E> uion(Set<e> secondSet);
+	public Set<E> intersection(Set<E> secondSet);
+	public boolean subset(Set<E> secondSet);
+	public boolean contains(Object E);
+	public int size();
+}

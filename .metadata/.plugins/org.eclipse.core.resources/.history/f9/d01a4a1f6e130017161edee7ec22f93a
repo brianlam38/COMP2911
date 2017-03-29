@@ -1,0 +1,13 @@
+/**
+ * Simple tester for our set implementation.
+ * @author brianlam
+ *
+ */
+
+public class SetTester {
+	
+	public static void main(String[] args) {
+		ArrayListSet<String> setOne = new ArrayListSet<>();
+		setOne.add("ABC");
+	}
+}
