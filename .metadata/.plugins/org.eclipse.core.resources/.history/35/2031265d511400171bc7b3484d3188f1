@@ -1,0 +1,11 @@
+import java.util.Iterator;
+
+public class Iterators {
+
+	ArrayList<Integer> a = new ArryaList<Integer>();
+	a.add(5);
+	
+	Iterator<Integer> it = a.iterator();
+	it.hasNext();
+	int b = it.next(); // Gets the next item, moves iterator forward
+}

@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class VanRentalSystem {
+	// Begin taking in input
+	Scanner sc = null;
+    try {
+        sc = new Scanner(new FileReader(args[0]));    # args[0] is the first command line argument
+    }
+	// Stuff
+    catch (FileNotFoundException e) {
+    	
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Closing the file
+    finally {
+        if (sc != null) sc.close();
+    }	
+}
