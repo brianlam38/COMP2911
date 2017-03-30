@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-// need to add import for ArrayListSet class
-
 public class VanRentalSystem {
 	public static void main(String[] args) {
 		Scanner sc = null;
@@ -14,11 +12,6 @@ public class VanRentalSystem {
 	    	sc.nextInt(); // reads in an int from standard input // keep doing this until end of input
 			}
 		}
-		
-		
-		
-		
-		
 		// Doing error testing. Handling exceptions.
 		catch (FileNotFoundException e) {
     	

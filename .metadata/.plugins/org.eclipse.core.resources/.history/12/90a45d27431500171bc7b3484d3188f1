@@ -14,11 +14,6 @@ public class VanRentalSystem {
 	    	sc.nextInt(); // reads in an int from standard input // keep doing this until end of input
 			}
 		}
-		
-		
-		
-		
-		
 		// Doing error testing. Handling exceptions.
 		catch (FileNotFoundException e) {
     	
