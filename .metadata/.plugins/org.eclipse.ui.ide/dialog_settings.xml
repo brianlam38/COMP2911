@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="/Users/brianlam/Dropbox/17x1/COMP2911/Exam_Notes/2911 book+notes/ALL LABS/lab5/src"/>
+	</list>
 	<section name="NewWizardAction">
 	</section>
 </section>

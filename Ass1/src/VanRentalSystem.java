@@ -31,3 +31,20 @@ public class VanRentalSystem {
 	}	
 }
 
+// DESIGN STRATEGY
+// 1. Main System / Possibly also Booking System (combine 2-in-1)
+	// Scanner for entire file
+		// + Scanner for each line
+		// Knowing each line's format, parse in the info.
+		// Based off info parsed, do a request (booking, changes, cancellations)
+	// Returns output
+// 2. Booking System
+	// Makes booking, changes, cancellations
+	// Grabs depot stuff, which grabs van stuff
+// 3. Depot Class
+	// DATA STRUCTURES: Use a Hash Map to store list of depots, which contain a list of vans in each depo
+	// Stores depot stuff
+	// Grabs van stuff
+// 4. Van Class
+	// DATA STRUCTURES: Use a Hash Set to store list of vans
+	// Stores van stuff
