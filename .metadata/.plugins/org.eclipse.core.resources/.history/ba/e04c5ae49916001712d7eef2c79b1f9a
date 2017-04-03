@@ -1,0 +1,21 @@
+import java.util.*;
+import java.io.*;
+
+public class CamperVan {
+
+	public String vanName;
+	public String vanType;
+	
+	public Campervan() {
+		// Class constructor
+	}
+	
+	// Returns name of campervan
+	public getVanName() {
+		return this.vanName;
+	}
+	
+	// Doesn't need to know its current location, as Depot should store that info
+	// Otherwise, it will have dependency on Depot
+	
+}

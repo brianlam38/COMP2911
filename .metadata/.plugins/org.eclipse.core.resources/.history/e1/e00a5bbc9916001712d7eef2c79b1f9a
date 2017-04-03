@@ -1,0 +1,20 @@
+import java.util.*;
+import java.io.*;
+
+public class CamperVan {
+
+	public String vanName;
+	public String vanType;
+	
+	public Campervan() {
+		// Class constructor
+	}
+	
+	// Returns 
+	public getVanName() {
+		return this.vanName;
+	}
+	
+	
+	
+}

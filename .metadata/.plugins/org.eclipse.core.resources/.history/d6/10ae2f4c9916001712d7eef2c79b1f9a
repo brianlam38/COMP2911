@@ -1,0 +1,19 @@
+import java.util.*;
+import java.io.*;
+
+public class Depot {
+	public ArrayListSet Depot;
+	public String depotName;
+	
+	public class Depot() {
+		// Class constructor
+	}
+	
+	public getDepotName() {
+		return Depot.depotName;
+	}
+	
+	public getVanList() {
+		// returns list of available vans inside the depot
+	}
+}
