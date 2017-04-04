@@ -1,31 +1,66 @@
 import java.io.*;
 import java.util.*;
 
-// need to add import for ArrayListSet class
+// System will store a hashmap of string depos
+// Depos will store a hashmap of string vans
+// The string values will be the hashmap keys
+
+// How do we store other attributes such as auto/manual in the hashmap?
+// Store the van in the hashmap.
+// The name is just the key
+// HashMap(String, Van)
 
 public class VanRentalSystem {
 	
 	public static void main(String[] args) {
 		Scanner sc = null;
+		HashMap<String, String> hmapDepot = new HashMap<String, String>();
+		
+		int lineNum = 0;
 		try {
-			//Set<Integer> mySet = new ArrayListSet<Integer>();
 			sc = new Scanner(new FileReader(args[0]));  
-			while (sc.hasNext()) { // while there is something else in the file	
+			while (sc.hasNextLine()) { 			// while there is something else in the file	
+				String line = sc.nextLine(); 	// reads in a line and stores in String object
 				
-				System.out.println("Hellow world\n");
-				//sc.nextInt(); // reads in an int from standard input // keep doing this until end of input
+				/**
+				 *  THINGS TO WORK ON
+				 */
+				
+				// Separate the good from the bad.
+				
+				
+				// (1) Parse input into hashmap
+						// Read line by line
+						// Separate using java scanner methods / regex expressions
+						// Use put(key, value) to insert
+				
+				// (2) View hashmap
+					// Get a set of the hashmap entries
+				Set set = hmapDepot.entrySet();
+					// Get an iterator OR
+					// Don't use an iterator, simply use the get() put() functions
+					// (If you don't need to perform operations of key-value pairs)
+				
+				// (3) Do request, change, cancellation operations
+				
+				
+				
+				
+				// Helps me check that input is still working
+				System.out.println("LINE:" + lineNum++);	// prints out line number
+				System.out.println(line);					// prints the line
 			}
 		}
-				
+
 		// Doing error testing. Handling exceptions.
 		catch (FileNotFoundException e) {
-    	
+
 		}
 	
 		// Everything is done, closing the file
 		finally {
 			if (sc != null) sc.close();
-		}	
+		}
 	}	
 }
 

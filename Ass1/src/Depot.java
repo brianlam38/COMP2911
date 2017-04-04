@@ -20,4 +20,9 @@ public class Depot {
 	public String getVanList() {
 		return "lolTest";
 	}
+	
+	// Sets list of vans inside the depot
+	public String setVanList() {
+		return "lolTest";
+	}
 }
