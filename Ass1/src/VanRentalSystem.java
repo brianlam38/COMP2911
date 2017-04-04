@@ -12,17 +12,15 @@ import java.util.*;
 
 public class VanRentalSystem {
 	
+	private static void addVanToDepot(HashMap<String, VanDepot> depotMap, String depotName, CamperVan van) {
+		System.out.println("--- LOCATION LINE");
+		depotMap.get(depotName).addVan(van);			// Place Key/Value into HashMap
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = null;
-		HashMap<String, String> hmap = new HashMap<String, String>();
-		String locationStr = "Location";
-		String commentStr1 = "        #";
-		String commentStr2 = "#";
-		String requestStr = "Request";
-		String changeStr = "Change";
-		String cancelStr = "Cancel";
-		String printStr = "Print";
-
+		HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
+		
 		try {
 			sc = new Scanner(new FileReader(args[0]));  
 			while (sc.hasNextLine()) { 			// while there is something else in the file	
@@ -31,35 +29,50 @@ public class VanRentalSystem {
 				/**
 				 *  THIS SECTION DETERMINES THE MAIN ACTIONS TO BE TAKEN DEPENDING ON INPUT
 				 */
+				
+				// THINGS TO DO:
+					// Work out how to add van objects into depot hashmap, through using the depot
+				
+				// Grab line input separated by whitespace
+				String[] input = line.split("\\s+");
+				
 				// Parse Depot into System HashMap
-				if (line.startsWith(locationStr) == true) {
-					System.out.println("--- LOCATION LINE");
-					//hmap.put(key, value);
+				if (input[0].equals("Location")) {
+					String depotName = input[1];
+					String vanName = input[2];
+					String vanType = input[3];
+					
+					VanDepot depot = new VanDepot(depotName);			// Create a depo object
+					CamperVan van = new CamperVan(vanName, vanType);	// Create van object
+					addVanToDepot(depotMap, depotName, van);			// Insert van object into HashMap
+					
+					String name = depotMap.get(depotName).name;
+					System.out.println("THIS IS THE VAN NAME:" + name);
 				}
-				// 
-				if ((line.startsWith(commentStr1) == true) || (line.startsWith(commentStr2) == true)) {
+				// Do stuff with comments
+				if (input[0].equals("#")) {
 					System.out.println("--- COMMENT LINE");
 				}
-				
-				if (line.startsWith(requestStr) == true) {
+				// Do stuff with booking requests
+				if (input[0].equals("Request")) {
 					System.out.println("--- REQUEST LINE");
 				}
-				
-				if (line.startsWith(changeStr) == true) {
+				// Do stuff with change requests
+				if (input[0].equals("Change")) {
 					System.out.println("--- CHANGE LINE");
 				}
-				
-				if (line.startsWith(cancelStr) == true) {
+				// Do stuff with cancellation requests
+				if (input[0].equals("Cancel")) {
 					System.out.println("--- CANCEL LINE");
 				}
-				
-				if (line.startsWith(printStr) == true) {
+				// Do stuff with
+				if (input[0].equals("Print")) {
 					System.out.println("--- PRINT LINE");
 				}
 				
 				// (2) View hashmap
 					// Get a set of the hashmap entries
-				Set set = hmap.entrySet();
+				Set set = depotMap.entrySet();
 					// Get an iterator OR
 					// Don't use an iterator, simply use the get() put() functions
 					// (If you don't need to perform operations of key-value pairs)

@@ -3,18 +3,18 @@ import java.io.*;
 
 public class CamperVan {
 
-	public String vanName;
-	public String vanType;
+	public String name;
+	public String type;
 	
 	// CamperVan constructor
-	public void Campervan() {
-		this.vanName = "lolTest";
-		this.vanType = "lolTest";
+	public CamperVan(String vanName, String vanType) {
+		this.name = vanName;
+		this.type = vanType;
 	}
 	
 	// Returns name of van
 	public String getVanName() {
-		return this.vanName;
+		return this.name;
 	}
 	
 	// Does it need to set its own name???

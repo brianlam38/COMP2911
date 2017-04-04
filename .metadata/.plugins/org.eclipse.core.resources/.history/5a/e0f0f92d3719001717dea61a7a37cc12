@@ -1,0 +1,24 @@
+import java.util.*;
+import java.io.*;
+
+public class CamperVan {
+
+	public String vanName;
+	public String vanType;
+	
+	// CamperVan constructor
+	public CamperVan() {
+		this.vanName = null;
+		this.vanType = null;
+	}
+	
+	// Returns name of van
+	public String getVanName() {
+		return this.vanName;
+	}
+	
+	// Does it need to set its own name???
+	
+	// Doesn't need to know its current location, as Depot should store that info
+	// Otherwise, it will have dependency on Depot	
+}
