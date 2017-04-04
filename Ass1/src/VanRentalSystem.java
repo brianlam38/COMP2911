@@ -5,8 +5,8 @@ import java.util.*;
 // Depos will store a hashmap of string vans
 // The string values will be the hashmap keys
 
-// How do we store other attributes such as auto/manual in the hashmap?
-// Store the van in the hashmap.
+// How do we store other attributes such as auto/manual in the HashMap?
+// Store the van object in the HashMap.
 // The name is just the key
 // HashMap(String, Van)
 
@@ -14,29 +14,52 @@ public class VanRentalSystem {
 	
 	public static void main(String[] args) {
 		Scanner sc = null;
-		HashMap<String, String> hmapDepot = new HashMap<String, String>();
-		
-		int lineNum = 0;
+		HashMap<String, String> hmap = new HashMap<String, String>();
+		String locationStr = "Location";
+		String commentStr1 = "        #";
+		String commentStr2 = "#";
+		String requestStr = "Request";
+		String changeStr = "Change";
+		String cancelStr = "Cancel";
+		String printStr = "Print";
+
 		try {
 			sc = new Scanner(new FileReader(args[0]));  
 			while (sc.hasNextLine()) { 			// while there is something else in the file	
 				String line = sc.nextLine(); 	// reads in a line and stores in String object
 				
 				/**
-				 *  THINGS TO WORK ON
+				 *  THIS SECTION DETERMINES THE MAIN ACTIONS TO BE TAKEN DEPENDING ON INPUT
 				 */
+				// Parse Depot into System HashMap
+				if (line.startsWith(locationStr) == true) {
+					System.out.println("--- LOCATION LINE");
+					//hmap.put(key, value);
+				}
+				// 
+				if ((line.startsWith(commentStr1) == true) || (line.startsWith(commentStr2) == true)) {
+					System.out.println("--- COMMENT LINE");
+				}
 				
-				// Separate the good from the bad.
+				if (line.startsWith(requestStr) == true) {
+					System.out.println("--- REQUEST LINE");
+				}
 				
+				if (line.startsWith(changeStr) == true) {
+					System.out.println("--- CHANGE LINE");
+				}
 				
-				// (1) Parse input into hashmap
-						// Read line by line
-						// Separate using java scanner methods / regex expressions
-						// Use put(key, value) to insert
+				if (line.startsWith(cancelStr) == true) {
+					System.out.println("--- CANCEL LINE");
+				}
+				
+				if (line.startsWith(printStr) == true) {
+					System.out.println("--- PRINT LINE");
+				}
 				
 				// (2) View hashmap
 					// Get a set of the hashmap entries
-				Set set = hmapDepot.entrySet();
+				Set set = hmap.entrySet();
 					// Get an iterator OR
 					// Don't use an iterator, simply use the get() put() functions
 					// (If you don't need to perform operations of key-value pairs)
@@ -47,7 +70,7 @@ public class VanRentalSystem {
 				
 				
 				// Helps me check that input is still working
-				System.out.println("LINE:" + lineNum++);	// prints out line number
+				//System.out.println("LINE:" + lineNum++);	// prints out line number
 				System.out.println(line);					// prints the line
 			}
 		}
