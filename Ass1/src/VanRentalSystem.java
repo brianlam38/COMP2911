@@ -40,7 +40,7 @@ public class VanRentalSystem {
 				// Grab line input separated by whitespace
 				String[] input = line.split("\\s+");
 				
-				// Add vans into hashmap, using depot as key
+				// Parsing input into Depot and Van HashMaps
 				if (input[0].equals("Location")) {
 					System.out.println("--- LOCATION LINE");		// test line (REMOVE)
 					String depotName = input[1];
