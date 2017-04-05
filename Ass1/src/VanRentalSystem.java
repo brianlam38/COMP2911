@@ -12,16 +12,23 @@ import java.util.*;
 
 public class VanRentalSystem {
 	
-	private static void addVanToDepot(HashMap<String, VanDepot> depotMap, String depotName, CamperVan van) {
-		System.out.println("--- LOCATION LINE");
-		depotMap.get(depotName).addVan(van);			// Place Key/Value into HashMap
+	private static void addDepotToMap(HashMap<String, VanDepot> depotMap, String depotName, VanDepot depot) {
+		depotMap.put(depotName, depot);
 	}
 	
+	private static void addVanToDepot(VanDepot depot, String vanName, String vanType) {
+		depot.addVan(vanName, vanType);
+	}
+	
+	/**
+	 * Main function to handle booking requests
+	 * @pre do I need this???
+	 * @post do I need this???
+	 */
 	public static void main(String[] args) {
 		Scanner sc = null;
-		HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
-		
 		try {
+			HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
 			sc = new Scanner(new FileReader(args[0]));  
 			while (sc.hasNextLine()) { 			// while there is something else in the file	
 				String line = sc.nextLine(); 	// reads in a line and stores in String object
@@ -30,24 +37,24 @@ public class VanRentalSystem {
 				 *  THIS SECTION DETERMINES THE MAIN ACTIONS TO BE TAKEN DEPENDING ON INPUT
 				 */
 				
-				// THINGS TO DO:
-					// Work out how to add van objects into depot hashmap, through using the depot
-				
 				// Grab line input separated by whitespace
 				String[] input = line.split("\\s+");
 				
-				// Parse Depot into System HashMap
+				// Add vans into hashmap, using depot as key
 				if (input[0].equals("Location")) {
+					System.out.println("--- LOCATION LINE");		// test line (REMOVE)
 					String depotName = input[1];
 					String vanName = input[2];
 					String vanType = input[3];
 					
-					VanDepot depot = new VanDepot(depotName);			// Create a depo object
-					CamperVan van = new CamperVan(vanName, vanType);	// Create van object
-					addVanToDepot(depotMap, depotName, van);			// Insert van object into HashMap
+					VanDepot depot = new VanDepot(depotName);
+					addDepotToMap(depotMap, depotName, depot);	 // hash in depot obj with depotName key
+					addVanToDepot(depot, vanName, vanType);		 // hash in van obj with vanName key
 					
-					String name = depotMap.get(depotName).name;
-					System.out.println("THIS IS THE VAN NAME:" + name);
+					// Running print tests
+					System.out.println("THIS IS THE DEPOT NAME:" + depotMap.get(depotName).name);
+					System.out.println("THIS IS THE VAN NAME:" + vanName);
+					System.out.println("THIS IS THE VAN TYPE:" + vanType);
 				}
 				// Do stuff with comments
 				if (input[0].equals("#")) {
@@ -72,7 +79,7 @@ public class VanRentalSystem {
 				
 				// (2) View hashmap
 					// Get a set of the hashmap entries
-				Set set = depotMap.entrySet();
+				//Set set = depotMap.entrySet();
 					// Get an iterator OR
 					// Don't use an iterator, simply use the get() put() functions
 					// (If you don't need to perform operations of key-value pairs)
@@ -99,21 +106,3 @@ public class VanRentalSystem {
 		}
 	}	
 }
-
-// DESIGN STRATEGY
-// 1. Main System / Possibly also Booking System (combine 2-in-1)
-	// Scanner for entire file
-		// + Scanner for each line
-		// Knowing each line's format, parse in the info.
-		// Based off info parsed, do a request (booking, changes, cancellations)
-	// Returns output
-// 2. Booking System
-	// Makes booking, changes, cancellations
-	// Grabs depot stuff, which grabs van stuff
-// 3. Depot Class
-	// DATA STRUCTURES: Use a Hash Map to store list of depots, which contain a list of vans in each depo
-	// Stores depot stuff
-	// Grabs van stuff
-// 4. Van Class
-	// DATA STRUCTURES: Use a Hash Set to store list of vans
-	// Stores van stuff
