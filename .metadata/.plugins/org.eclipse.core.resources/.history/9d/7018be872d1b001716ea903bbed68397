@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+public class Booking {
+	
+	LocalDateTime startDate;
+	LocalDateTime endDate;
+	
+	// Booking constructor
+	public Booking() {
+		this.startDate = 
+	}
+	
+	public LocalDateTime startDate(String year, month, date, hour, 0, 0, 0) {
+		LocalDateTime dateTime = LocalDateTime.of(year, month, date, hour, 0, 0, 0);		// Create date time obj
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm MMM dd");			// Custom format
+		String dateTimeStr = dateTime.format(formatter);									// Convert date time to str w/ custom format
+		
+		return startDate;
+	}
+	
+	
+}

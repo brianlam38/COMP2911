@@ -1,0 +1,17 @@
+import java.io.*;
+import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+public class Booking {
+	
+	LocalDateTime startDate;
+	LocalDateTime endDate;
+	
+	// Booking constructor
+	public Booking() {
+		this.
+	}
+	
+	
+}

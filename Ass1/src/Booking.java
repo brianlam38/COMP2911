@@ -1,14 +1,23 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Booking {
-	
-	int id;
-	
+
+	int ID;
+	LocalDateTime start;
+	LocalDateTime end;
+	int auto;
+	int manual;
 	
 	// Booking constructor
-	public Booking() {
-		this.id = 
+	public Booking(int bookingID, LocalDateTime startBooking, LocalDateTime endBooking, int numAuto, int numManual) {
+		this.ID = bookingID;
+		this.start = startBooking;
+		this.end = endBooking;
+		this.auto = numAuto;
+		this.manual = numManual;
 	}
 	
 	

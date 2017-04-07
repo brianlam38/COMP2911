@@ -2,20 +2,37 @@ import java.io.*;
 import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.text.*;
-
-// Use LocalDateTime
 
 public class VanRentalSystem {
-	
+
 	private static int convertMonthToInt(String month) {
 		String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 		for (int i = 0; i < 12; i++) {
 			if (month.equals(months[i])) {
-				return i;
+				return i+1;
 			}
 		}
 		return 0;
+	}
+	
+	public static LocalDateTime setStart(String hourStr, String monthStr, String dateStr) {
+		int hour = Integer.parseInt(hourStr);
+		int month = convertMonthToInt(monthStr);											// Convert str format to int
+		int date = Integer.parseInt(dateStr);
+		LocalDateTime startDateTime = LocalDateTime.of(2017, month, date, hour, 0, 0, 0);	// Create date time obj
+		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm MMM dd");
+		// String dateTimeStr = startDateTime.format(formatter);							// Convert date time to str w/ custom format
+		return startDateTime;
+	}
+
+	public static LocalDateTime setEnd(String hourStr, String monthStr, String dateStr) {
+		int hour = Integer.parseInt(hourStr);
+		int month = convertMonthToInt(monthStr);										// Convert str format to int
+		int date = Integer.parseInt(dateStr);
+		LocalDateTime endDateTime = LocalDateTime.of(2017, month, date, hour, 0, 0, 0);	// Create date time obj
+		// formatter = DateTimeFormatter.ofPattern("HH:mm MMM dd");
+		// String dateTimeStr = endDateTime.format(formatter);							// Convert date time to str w/ custom format
+		return endDateTime;
 	}
 	
 	public static void main(String[] args) {
@@ -29,7 +46,7 @@ public class VanRentalSystem {
 				
 				// Parsing input into Depot and Van HashMaps
 				if (input[0].equals("Location")) {
-					System.out.println("--- LOCATION LINE ------------------------"); // test line (REMOVE)
+					System.out.println("------------------------------------------------ LOCATION-"); // test line (REMOVE)
 					String depotName = input[1];
 					String vanName = input[2];
 					String vanType = input[3];
@@ -44,42 +61,56 @@ public class VanRentalSystem {
 					System.out.println("THIS IS THE VAN TYPE:" + vanType);
 				}
 				// Skip comments
-				if (input[0].equals("#")) {
-					System.out.println("--- COMMENT LINE ------------------------");
+				if (input[0].equals("#") || input[0].isEmpty()) {
+					System.out.println("------------------------------------------------ COMMENT/EMPTY - REMOVED");
 					continue;
 				}
 				// Do stuff with booking requests
 				if (input[0].equals("Request")) {
-					System.out.println("--- REQUEST LINE ------------------------");
+					System.out.println("------------------------------------------------ BOOKING REQUEST");
 					//Request <id> <hour1> <month1> <date1> <hour2> <month2> <date2> <num1> <type1> [<num2> <type2>]
 					int bookingID = Integer.parseInt(input[1]);
-					int hour = Integer.parseInt(input[2]); 
-					String monthStr = input[3];
-					int month = convertMonthToInt(monthStr);	// convert str format to int
-					int date = Integer.parseInt(input[4]);
-					int year = 2017;
+					LocalDateTime startBooking = setStart(input[2], input[3], input[4]);	// determine booking start
+					LocalDateTime endBooking = setEnd(input[5], input[6], input[7]);		// determine end date
 					
+					int numAuto, numManual = 0;
+					if (input[9].equals("Automatic")) {				// grab num of auto/man
+						numAuto = Integer.parseInt(input[8]);
+						numManual = 0;
+					} else {
+						numManual = Integer.parseInt(input[8]);
+						numAuto = 0;
+					}
 					
-					LocalDateTime dateTime = LocalDateTime.of(year, month, date, hour, 0, 0, 0);		// Create date time obj
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm MMM dd");			// Custom format
-					String dateTimeStr = dateTime.format(formatter);									// Convert date time to str w/ custom format
+					if (line.length() > 41) {
+						if (input[11].equals("Automatic")) {
+							numAuto = Integer.parseInt(input[10]);
+						} else {
+							numManual = Integer.parseInt(input[10]);
+						}					
+					}
 					
+
+
+					Booking newBooking = new Booking(bookingID, startBooking, endBooking, numAuto, numManual);
 					
 					/* ############### PRINT TESTS ############### */
-					System.out.println(formatDateTime);
-					System.out.println("THE BOOKING ID IS: " + bookingID);
+					System.out.println("THE BOOKING ID IS: " + newBooking.ID);
+					System.out.println("BOOKING START: " + newBooking.start);
+					System.out.println("BOOKING END: " + newBooking.end);
+					System.out.println("BOOKING END: " + newBooking.end);
 				}
 				// Do stuff with change requests
 				if (input[0].equals("Change")) {
-					System.out.println("--- CHANGE LINE ------------------------");
+					System.out.println("------------------------------------------------ BOOKING CHANGE");
 				}
 				// Do stuff with cancellation requests
 				if (input[0].equals("Cancel")) {
-					System.out.println("--- CANCEL LINE ------------------------");
+					System.out.println("------------------------------------------------ BOOKING CANCELLATION");
 				}
 				// Do stuff with
 				if (input[0].equals("Print")) {
-					System.out.println("--- PRINT LINE ------------------------");
+					System.out.println("------------------------------------------------ PRINT THINGS");
 				}
 				
 				// DATE TIME PRINT FORMAT
