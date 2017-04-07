@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.*;
+import java.util.Map.Entry;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 
 public class VanRentalSystem {
 
@@ -38,27 +39,49 @@ public class VanRentalSystem {
 	public static void main(String[] args) {
 		Scanner sc = null;
 		try {
-			HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
+			String currDepot = "empty";
+			int depotOrder = 0;
+			int vanOrder = 0;
+			HashMap<Integer, Booking> bookingMap = new HashMap<Integer, Booking>();	// BOOKING HASHMAP <booking ID, booking obj>
+			HashMap<Integer, VanDepot> depotMap = new HashMap<Integer, VanDepot>();	// DEPOT HASHMAP <order declared, VanDepot obj>
+			
 			sc = new Scanner(new FileReader(args[0])); 
-			while (sc.hasNextLine()) { 					// while file !empty
-				String line = sc.nextLine(); 			// reads in a line and stores in String object
+			while (sc.hasNextLine()) { 
+				String line = sc.nextLine();
 				String[] input = line.split("\\s+"); 	// separates string by whitespace and stores in array
 				
 				// Parsing input into Depot and Van HashMaps
 				if (input[0].equals("Location")) {
-					System.out.println("------------------------------------------------ LOCATION-"); // test line (REMOVE)
+					System.out.println("------------------------------------------------ LOCATION-");
 					String depotName = input[1];
 					String vanName = input[2];
 					String vanType = input[3];
 					
-					VanDepot depot = new VanDepot(depotName);		// create depot obj
-					depotMap.put(depotName, depot);					// hash in depot obj w/ depotName key
-					depot.addVan(vanName, vanType);					// hash in van obj w/ vanName key
-					
+					// first depot
+					if (currDepot.equals("empty")) {
+						currDepot = depotName;
+						VanDepot depot = new VanDepot(depotName);
+						depotMap.put(depotOrder, depot);
+						depot.addVan(vanName, vanType, vanOrder);
+					// existing depot
+					} else if (currDepot.equals(depotName)) {
+						depotMap.get(depotOrder).addVan(vanName, vanType, vanOrder);
+					// new depot
+					} else if (!(currDepot.equals(depotName))){
+						depotOrder++;
+						currDepot = depotName;
+						VanDepot depot = new VanDepot(depotName);
+						depotMap.put(depotOrder, depot);
+						depot.addVan(vanName, vanType, vanOrder);
+					}
+
 					/* ############### PRINT TESTS ############### */
-					System.out.println("THIS IS THE DEPOT NAME:" + depotMap.get(depotName).name);
+					System.out.println("THIS IS THE DEPOT NAME:" + depotMap.get(depotOrder).name);
+					System.out.println("THIS IS THE DEPOT ORDER DECLARED:" + depotOrder);
 					System.out.println("THIS IS THE VAN NAME:" + vanName);
 					System.out.println("THIS IS THE VAN TYPE:" + vanType);
+
+					vanOrder++;	  // increment order# for van
 				}
 				// Skip comments
 				if (input[0].equals("#") || input[0].isEmpty()) {
@@ -73,8 +96,11 @@ public class VanRentalSystem {
 					LocalDateTime startBooking = setStart(input[2], input[3], input[4]);	// determine booking start
 					LocalDateTime endBooking = setEnd(input[5], input[6], input[7]);		// determine end date
 					
+					/**
+					 * CHECK IF THERE IS ONE VANTYPE OR MIXTYPE BOOKING
+					 */
 					int numAuto, numManual = 0;
-					if (input[9].equals("Automatic")) {				// grab num of auto/man
+					if (input[9].equals("Automatic")) {				// store # auto/man bookings
 						numAuto = Integer.parseInt(input[8]);
 						numManual = 0;
 					} else {
@@ -82,7 +108,7 @@ public class VanRentalSystem {
 						numAuto = 0;
 					}
 					
-					if (line.length() > 41) {
+					if (line.length() > 41) {						// store #auto/man bookings
 						if (input[11].equals("Automatic")) {
 							numAuto = Integer.parseInt(input[10]);
 						} else {
@@ -90,15 +116,56 @@ public class VanRentalSystem {
 						}					
 					}
 					
+					// Check available vans
+					// Chuck them into list
+					// Assign them each to booking + request new booking				
+					/**
+					 * ASSIGN AUTO + MANUAL VANS TO A VANLIST, THEN ADD VANS IN VANLIST TO BOOKING CLASS
+					 */
+					Booking request = new Booking(bookingID, startBooking, endBooking, numAuto, numManual);	// create new booking with list of vans objects booked
+					bookingMap.put(bookingID, request);
+					
+					while (numAuto != 0) {
+						for (int order = 0; order < depotOrder; order++) {
+							depotMap.get(order).bookAutoVan(numAuto, request);
+						}
+						numAuto--;
+					}
 
+					while (numManual != 0) {
+						for (int order = 0; order < depotOrder; order++) {
+							depotMap.get(order).bookAutoVan(numManual, request);
+						}
+						numManual--;
+					}
+					
+					Iterator<CamperVan> itr = request.vanList.iterator();
+					while (itr.hasNext()) {
+						System.out.println("VANS INSIDE BOOKING " + bookingID + " " + "ARE: " + itr.next());
+					}
+					
 
-					Booking newBooking = new Booking(bookingID, startBooking, endBooking, numAuto, numManual);
+					
+					// When booking is requested:
+					// Grab depot with order lowest -> highest
+					// Grab auto/man vehicle with order lowest -> highest
+					// Assign vehicle to Booking
+					// Mark vehicle as "NOT AVAILABLE"
+					
+					
+					
+					// If booking date/time valid:
+						// In order declared, get(orderDeclared from 0-n), search through each Depot's vanMap
+					// If van exists:
+						// Assign vans to Booking Hashmap (in order of declaration)
+					// Else go to next Depot
 					
 					/* ############### PRINT TESTS ############### */
-					System.out.println("THE BOOKING ID IS: " + newBooking.ID);
-					System.out.println("BOOKING START: " + newBooking.start);
-					System.out.println("BOOKING END: " + newBooking.end);
-					System.out.println("BOOKING END: " + newBooking.end);
+					System.out.println("THE BOOKING ID IS: " + request.ID);
+					System.out.println("BOOKING START: " + request.start);
+					System.out.println("BOOKING END: " + request.end);
+					System.out.println("BOOKING #AUTO: " + request.auto);
+					System.out.println("BOOKING #MANUAL: " + request.manual);
 				}
 				// Do stuff with change requests
 				if (input[0].equals("Change")) {
@@ -111,6 +178,8 @@ public class VanRentalSystem {
 				// Do stuff with
 				if (input[0].equals("Print")) {
 					System.out.println("------------------------------------------------ PRINT THINGS");
+
+					// Print bookings of all vehicles at specified depot in order of vehicle declarations
 				}
 				
 				// DATE TIME PRINT FORMAT

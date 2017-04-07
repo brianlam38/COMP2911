@@ -1,0 +1,62 @@
+import java.util.*;
+import java.io.*;
+
+public class VanDepot {
+
+	ArrayList<CamperVan> vanList;
+	String name;
+	
+	// Depot constructor
+	public VanDepot(String depotName) {
+		this.name = depotName;
+		this.vanList = new ArrayList<CamperVan>();
+	}
+	
+	// Adding new van object van list
+	public void addVan(String vanName, String vanType, int vanOrder) {
+		CamperVan van = new CamperVan(vanName, vanType, vanOrder);
+		vanList.add(van);
+		System.out.println("THIS VAN HAS BEEN ADDED: " + van.name);
+	}
+	
+	public CamperVan getManuakVan() {
+		int listSize = vanList.size();
+		for (int i = 0; i < listSize; i++) {
+			CamperVan van = vanList.get(i);
+			if (!(van.type.equals("Automatic"))) {
+				continue;
+			} else {
+				return van;
+			}
+		}
+	}
+
+	// Loop through all vans in depot, lowest->highest and grab Van object
+
+	
+	/*// Loop through all keys in depot, lowest->highest and grab Van object
+	public CamperVan getAutoVan(int order) {
+		for (int i = 0; i < order; i++) {
+			if ((vanList.get(i) != null) && (vanList.get(i).type == "Automatic")) {
+				System.out.println(vanList.get(i));
+				return vanList.get(i);
+			} else {
+				continue;
+			}
+		}
+		return vanList.get(0);
+	}
+
+	// Loop through all keys in depot, lowest->highest and grab Van object
+	public CamperVan getManualVan(int order) {
+		for (int i = 0; i < order; i++) {
+			if ((vanList.get(i) != null) && (vanList.get(i).type == "Manual")) {
+				return vanList.get(i);
+			} else {
+				continue;
+			}
+		}
+		return vanList.get(0);
+	}*/
+}
+

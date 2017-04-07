@@ -2,33 +2,62 @@ import java.util.*;
 import java.io.*;
 
 public class VanDepot {
+
+	ArrayList<CamperVan> vanList;
 	String name;
-	HashMap<String, CamperVan> vanMap = new HashMap<String, CamperVan>();	// DEPO HASHMAP <vanName key, Van obj>
 	
 	// Depot constructor
 	public VanDepot(String depotName) {
 		this.name = depotName;
+		this.vanList = new ArrayList<CamperVan>();
 	}
 	
-	// Add key->value pair for vans
-	public void addVan(String vanName, String vanType) {
-		CamperVan van = new CamperVan(vanName, vanType);
-		vanMap.put(van.getVanName(), van);
-		System.out.println(vanMap.get(vanName).name);
+	// Adding new van object van list
+	public void addVan(String vanName, String vanType, int vanOrder) {
+		CamperVan van = new CamperVan(vanName, vanType, vanOrder);
+		vanList.add(van);
+		System.out.println("THIS VAN HAS BEEN ADDED: " + van.name);
 	}
 	
-	// Returns depot name (called by system)
-	public String getDepotName() {
-		return this.name;
+	/**
+	 * Find an Auto in the depot then add it to current booking
+	 * @param numAuto
+	 * @param request
+	 */
+	public void bookAutoVan(int numAuto, Booking request) {
+		int listSize = vanList.size();
+		for (int i = 0; i < listSize; i++) {
+			CamperVan validVan = vanList.get(i);
+			if (numAuto == 0) {
+				break;
+			} else if (!(validVan.type.equals("Automatic"))) {
+				continue;
+			} else {
+				request.vanList.add(validVan);
+				numAuto--;
+			}
+		}
 	}
-	
-	// Returns list of vans inside the depot (called by system)
-	public String getVanList() {
-		return "lolTest";
+
+	/**
+	 * Find a Manual in the depot then add it to current booking
+	 * @param numManual
+	 * @param request
+	 */
+	public void bookManualVan(int numManual, Booking request) {
+		int listSize = vanList.size();
+		for (int i = 0; i < listSize; i++) {
+			CamperVan validVan = vanList.get(i);
+			if (numManual == 0) {
+				break;
+			} else if (!(validVan.type.equals("Manual"))) {
+				continue;
+			} else {
+				request.vanList.add(validVan);
+				numManual--;
+			}
+		}
 	}
-	
-	// Sets list of vans inside the depot
-	public String setVanList() {
-		return "lolTest";
-	}
+
 }
+

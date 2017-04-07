@@ -1,0 +1,24 @@
+import java.util.*;
+import java.time.*;
+
+public class Booking {
+
+	//HashMap<String, Booking> BookingMap = new HashMap<String, Booking>();
+	ArrayList<CamperVan> vanList;	// list of depots in booking
+	
+	int ID;				// booking ID
+	LocalDateTime start;// start date
+	LocalDateTime end;	// end date
+	int auto;			// # of Auto bookings
+	int manual;			// # of Manual bookings
+	
+	// Booking constructor
+	public Booking(int bookingID, LocalDateTime startBooking, LocalDateTime endBooking, int numAuto, int numManual) {
+		this.ID = bookingID;
+		this.start = startBooking;
+		this.end = endBooking;
+		this.auto = numAuto;
+		this.manual = numManual;
+	}
+	
+}

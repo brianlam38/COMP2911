@@ -1,0 +1,39 @@
+import java.util.*;
+import java.io.*;
+
+public class VanDepot {
+
+	HashMap<String, CamperVan> vanMap = new HashMap<String, CamperVan>();
+	String name;
+	int order;
+	
+	// Depot constructor
+	public VanDepot(String depotName, int depotOrder) {
+		this.name = depotName;
+		this.order = depotOrder;
+	}
+	
+	// Add key->value pair for vans
+	public void addVan(String vanName, String vanType, int vanOrder) {
+		CamperVan van = new CamperVan(vanName, vanType, vanOrder);
+		vanMap.put(van.getVanName(), van);
+		System.out.println(vanMap.get(vanName).name);
+	}
+	
+	// Loop through all keys in depot, lowest->highest and grab Van object
+	public CamperVan getAutoVan() {
+		for (int i = 0; i < order; i++) {
+			if ((vanMap.get(i) != null) && (vanMap.get(i).type == "Automatic")) {
+				return vanMap.get(i);
+			} else {
+				continue;
+			}
+		}
+		
+	}
+	
+	// Sets list of vans inside the depot
+	public String setVanList() {
+		return "lolTest";
+	}
+}

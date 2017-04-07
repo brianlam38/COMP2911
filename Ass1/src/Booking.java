@@ -1,15 +1,14 @@
-import java.io.*;
 import java.util.*;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 
 public class Booking {
 
-	int ID;
-	LocalDateTime start;
-	LocalDateTime end;
-	int auto;
-	int manual;
+	ArrayList<CamperVan> vanList;
+	int ID;				// booking ID
+	LocalDateTime start;// start date
+	LocalDateTime end;	// end date
+	int auto;			// # of Auto bookings
+	int manual;			// # of Manual bookings
 	
 	// Booking constructor
 	public Booking(int bookingID, LocalDateTime startBooking, LocalDateTime endBooking, int numAuto, int numManual) {
@@ -18,7 +17,6 @@ public class Booking {
 		this.end = endBooking;
 		this.auto = numAuto;
 		this.manual = numManual;
+		this.vanList = new ArrayList<CamperVan>();;	// list of depots in booking
 	}
-	
-	
 }

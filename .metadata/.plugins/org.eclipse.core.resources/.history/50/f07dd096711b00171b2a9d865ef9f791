@@ -1,0 +1,22 @@
+import java.util.*;
+import java.time.*;
+
+public class Booking {
+
+	HashMap<String, Booking> BookingMap = new HashMap<String, Booking>();
+	int ID;
+	LocalDateTime start;
+	LocalDateTime end;
+	int auto;
+	int manual;
+	
+	// Booking constructor
+	public Booking(String[] depots, int bookingID, LocalDateTime startBooking, LocalDateTime endBooking, int numAuto, int numManual) {
+		this.ID = bookingID;
+		this.start = startBooking;
+		this.end = endBooking;
+		this.auto = numAuto;
+		this.manual = numManual;
+	}
+	
+}

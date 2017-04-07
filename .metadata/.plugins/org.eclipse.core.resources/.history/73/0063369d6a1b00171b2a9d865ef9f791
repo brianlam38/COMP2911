@@ -1,0 +1,34 @@
+import java.util.*;
+import java.io.*;
+
+public class VanDepot {
+	
+	// For order of CamperVans, we can still use vanName as the key. But during iteration, we need to find the van that has lowest -> highest order value
+
+	HashMap<String, CamperVan> vanMap = new HashMap<String, CamperVan>();	// DEPOT HASHMAP <vanName key, Van obj>
+	String name;
+	int order;
+	
+	// Depot constructor
+	public VanDepot(String depotName, int depotOrder) {
+		this.name = depotName;
+		this.order = depotOrder;
+	}
+	
+	// Add key->value pair for vans
+	public void addVan(String vanName, String vanType, int vanOrder) {
+		CamperVan van = new CamperVan(vanName, vanType, vanOrder);
+		vanMap.put(van.getVanName(), van);
+		System.out.println(vanMap.get(vanName).name);
+	}
+	
+	// Grabs lowest order van
+	public CamperVan getVan(String) {
+		return van;
+	//}
+	
+	// Sets list of vans inside the depot
+	public String setVanList() {
+		return "lolTest";
+	}
+}
