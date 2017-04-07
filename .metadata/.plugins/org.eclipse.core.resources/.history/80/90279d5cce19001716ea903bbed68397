@@ -1,0 +1,103 @@
+import java.io.*;
+import java.util.*;
+
+public class VanRentalSystem {
+	
+	// REDUNDANT CLASS
+	//private static void addDepotToMap(HashMap<String, VanDepot> depotMap, String depotName, VanDepot depot) {
+	//	depotMap.put(depotName, depot);
+	//}
+	
+	// REDUNDANT CLASS
+	//private static void addVanToDepot(VanDepot depot, String vanName, String vanType) {
+	//	depot.addVan(vanName, vanType);
+	//}
+	
+	public static void main(String[] args) {
+		Scanner sc = null;
+		try {
+			HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
+			sc = new Scanner(new FileReader(args[0])); 
+			while (sc.hasNextLine()) { 			// while there is something else in the file	
+				String line = sc.nextLine(); 	// reads in a line and stores in String object
+				
+				/**
+				 *  THIS SECTION DETERMINES THE MAIN ACTIONS TO BE TAKEN DEPENDING ON INPUT
+				 */
+				// Grab line input separated by whitespace
+				String[] input = line.split("\\s+");
+				
+				// Parsing input into Depot and Van HashMaps
+				if (input[0].equals("Location")) {
+					System.out.println("--- LOCATION LINE ------------------------"); // test line (REMOVE)
+					String depotName = input[1];
+					String vanName = input[2];
+					String vanType = input[3];
+					
+					VanDepot depot = new VanDepot(depotName);		// create depot obj
+					depotMap.put(depotName, depot);					// hash in depot obj w/ depotName key
+					depot.addVan(vanName, vanType);					// hash in van obj w/ vanName key
+					//addDepotToMap(depotMap, depotName, depot); - REDUNDANT?
+					//addVanToDepot(depot, vanName, vanType);	 - REDUNDANT?
+					
+					// Running print tests
+					System.out.println("THIS IS THE DEPOT NAME:" + depotMap.get(depotName).name);
+					System.out.println("THIS IS THE VAN NAME:" + vanName);
+					System.out.println("THIS IS THE VAN TYPE:" + vanType);
+				}
+				// Skip comments
+				if (input[0].equals("#")) {
+					System.out.println("--- COMMENT LINE ------------------------");
+					continue;
+				}
+				// Do stuff with booking requests
+				if (input[0].equals("Request")) {
+					System.out.println("--- REQUEST LINE ------------------------");
+					// STRING FORMAT:
+					//Request <id> <hour1> <month1> <date1> <hour2> <month2> <date2> <num1> <type1> [<num2> <type2>]
+					String bookingID = input[1];
+					int hour = Integer.parseInt(input[2]);
+					String month = input[3];
+					String date = input[4];
+					System.out.println("THE BOOKING ID IS: " + bookingID);
+					System.out.println("THE BOOKING HOUR IS: " + hour);
+					System.out.println("THE BOOKING MONTH IS: " + month);
+					System.out.println("THE BOOKING MONTH IS: " + month);
+				}
+				// Do stuff with change requests
+				if (input[0].equals("Change")) {
+					System.out.println("--- CHANGE LINE ------------------------");
+				}
+				// Do stuff with cancellation requests
+				if (input[0].equals("Cancel")) {
+					System.out.println("--- CANCEL LINE ------------------------");
+				}
+				// Do stuff with
+				if (input[0].equals("Print")) {
+					System.out.println("--- PRINT LINE ------------------------");
+				}
+				
+				// (2) View hashmap
+					// Get a set of the hashmap entries
+				//Set set = depotMap.entrySet();
+					// Get an iterator OR
+					// Don't use an iterator, simply use the get() put() functions
+					// (If you don't need to perform operations of key-value pairs)
+				
+				// (3) Do request, change, cancellation operations
+
+				System.out.println(line);					// prints the line
+			}
+		}
+
+		// Doing error testing. Handling exceptions.
+		catch (FileNotFoundException e) {
+
+		}
+	
+		// Everything is done, closing the file
+		finally {
+			if (sc != null) sc.close();
+		}
+	}	
+}

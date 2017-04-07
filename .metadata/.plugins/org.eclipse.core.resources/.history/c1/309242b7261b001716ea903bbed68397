@@ -1,0 +1,91 @@
+import java.io.*;
+import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+// Use LocalDateTime
+
+public class VanRentalSystem {
+	
+	public static void main(String[] args) {
+		Scanner sc = null;
+		try {
+			HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
+			sc = new Scanner(new FileReader(args[0])); 
+			while (sc.hasNextLine()) { 					// while file !empty
+				String line = sc.nextLine(); 			// reads in a line and stores in String object
+				String[] input = line.split("\\s+"); 	// separates string by whitespace and stores in array
+				
+				// Parsing input into Depot and Van HashMaps
+				if (input[0].equals("Location")) {
+					System.out.println("--- LOCATION LINE ------------------------"); // test line (REMOVE)
+					String depotName = input[1];
+					String vanName = input[2];
+					String vanType = input[3];
+					
+					VanDepot depot = new VanDepot(depotName);		// create depot obj
+					depotMap.put(depotName, depot);					// hash in depot obj w/ depotName key
+					depot.addVan(vanName, vanType);					// hash in van obj w/ vanName key
+					
+					// Running print tests
+					System.out.println("THIS IS THE DEPOT NAME:" + depotMap.get(depotName).name);
+					System.out.println("THIS IS THE VAN NAME:" + vanName);
+					System.out.println("THIS IS THE VAN TYPE:" + vanType);
+				}
+				// Skip comments
+				if (input[0].equals("#")) {
+					System.out.println("--- COMMENT LINE ------------------------");
+					continue;
+				}
+				// Do stuff with booking requests
+				if (input[0].equals("Request")) {
+					System.out.println("--- REQUEST LINE ------------------------");
+					// STRING FORMAT:
+					//Request <id> <hour1> <month1> <date1> <hour2> <month2> <date2> <num1> <type1> [<num2> <type2>]
+					int bookingID = Integer.parseInt(input[1]);	// grabs bookingID
+					
+					String dtStr = input[2] + " " + input[3] + " "+ input[4]; // grabs time & date string
+					String dtFormat = "HH LLL dd";
+					System.out.println("THE TIME IS: " + dtStr);
+					
+					LocalDateTime a = LocalDateTime.of2017, convertMonth(""), Integer.parseInt(date), Inter
+					
+					DateTimeFormatter format = DateTimeFormatter.ofPattern(dtFormat);
+						System.out.println("THE FORMAT IS: " + format);	// Formatting a (HH MMM DD / 24 MAR 10) pattern
+					LocalDateTime parsedDT = LocalDateTime.parse(dtStr, format);	// Creating dateTime object       SOMETHING IS GOING WRONG HERE WITH CONVERSION FROM STR TO DATE
+						System.out.println("THE TIME2 IS: " + parsedDT);
+
+					System.out.println("THE BOOKING ID IS: " + bookingID);
+				}
+				// Do stuff with change requests
+				if (input[0].equals("Change")) {
+					System.out.println("--- CHANGE LINE ------------------------");
+				}
+				// Do stuff with cancellation requests
+				if (input[0].equals("Cancel")) {
+					System.out.println("--- CANCEL LINE ------------------------");
+				}
+				// Do stuff with
+				if (input[0].equals("Print")) {
+					System.out.println("--- PRINT LINE ------------------------");
+				}
+				
+				// hour     HH:MM   (24:00 system)
+				// month    MMM     (JAN, FEB, MAR)
+				// day/date DD      (1-31)
+
+				System.out.println(line);	// prints the line
+			}
+		}
+
+		// Doing error testing. Handling exceptions.
+		catch (FileNotFoundException e) {
+
+		}
+	
+		// Everything is done, closing the file
+		finally {
+			if (sc != null) sc.close();
+		}
+	}	
+}

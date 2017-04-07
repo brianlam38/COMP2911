@@ -1,44 +1,31 @@
 import java.io.*;
 import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.text.*;
 
-// System will store a hashmap of string depos
-// Depos will store a hashmap of string vans
-// The string values will be the hashmap keys
-
-// How do we store other attributes such as auto/manual in the HashMap?
-// Store the van object in the HashMap.
-// The name is just the key
-// HashMap(String, Van)
+// Use LocalDateTime
 
 public class VanRentalSystem {
 	
-	private static void addDepotToMap(HashMap<String, VanDepot> depotMap, String depotName, VanDepot depot) {
-		depotMap.put(depotName, depot);
+	private static int convertMonthToInt(String month) {
+		String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+		for (int i = 0; i < 12; i++) {
+			if (month.equals(months[i])) {
+				return i;
+			}
+		}
+		return 0;
 	}
 	
-	private static void addVanToDepot(VanDepot depot, String vanName, String vanType) {
-		depot.addVan(vanName, vanType);
-	}
-	
-	/**
-	 * Main function to handle booking requests
-	 * @pre do I need this???
-	 * @post do I need this???
-	 */
 	public static void main(String[] args) {
 		Scanner sc = null;
 		try {
 			HashMap<String, VanDepot> depotMap = new HashMap<String, VanDepot>();
-			sc = new Scanner(new FileReader(args[0]));  
-			while (sc.hasNextLine()) { 			// while there is something else in the file	
-				String line = sc.nextLine(); 	// reads in a line and stores in String object
-				
-				/**
-				 *  THIS SECTION DETERMINES THE MAIN ACTIONS TO BE TAKEN DEPENDING ON INPUT
-				 */
-				
-				// Grab line input separated by whitespace
-				String[] input = line.split("\\s+");
+			sc = new Scanner(new FileReader(args[0])); 
+			while (sc.hasNextLine()) { 					// while file !empty
+				String line = sc.nextLine(); 			// reads in a line and stores in String object
+				String[] input = line.split("\\s+"); 	// separates string by whitespace and stores in array
 				
 				// Parsing input into Depot and Van HashMaps
 				if (input[0].equals("Location")) {
@@ -47,16 +34,16 @@ public class VanRentalSystem {
 					String vanName = input[2];
 					String vanType = input[3];
 					
-					VanDepot depot = new VanDepot(depotName);
-					addDepotToMap(depotMap, depotName, depot);	 // hash in depot obj with depotName key
-					addVanToDepot(depot, vanName, vanType);		 // hash in van obj with vanName key
+					VanDepot depot = new VanDepot(depotName);		// create depot obj
+					depotMap.put(depotName, depot);					// hash in depot obj w/ depotName key
+					depot.addVan(vanName, vanType);					// hash in van obj w/ vanName key
 					
-					// Running print tests
+					/* ############### PRINT TESTS ############### */
 					System.out.println("THIS IS THE DEPOT NAME:" + depotMap.get(depotName).name);
 					System.out.println("THIS IS THE VAN NAME:" + vanName);
 					System.out.println("THIS IS THE VAN TYPE:" + vanType);
 				}
-				// Ignore comments
+				// Skip comments
 				if (input[0].equals("#")) {
 					System.out.println("--- COMMENT LINE ------------------------");
 					continue;
@@ -64,6 +51,23 @@ public class VanRentalSystem {
 				// Do stuff with booking requests
 				if (input[0].equals("Request")) {
 					System.out.println("--- REQUEST LINE ------------------------");
+					//Request <id> <hour1> <month1> <date1> <hour2> <month2> <date2> <num1> <type1> [<num2> <type2>]
+					int bookingID = Integer.parseInt(input[1]);
+					int hour = Integer.parseInt(input[2]); 
+					String monthStr = input[3];
+					int month = convertMonthToInt(monthStr);	// convert str format to int
+					int date = Integer.parseInt(input[4]);
+					int year = 2017;
+					
+					
+					LocalDateTime dateTime = LocalDateTime.of(year, month, date, hour, 0, 0, 0);		// Create date time obj
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm MMM dd");			// Custom format
+					String dateTimeStr = dateTime.format(formatter);									// Convert date time to str w/ custom format
+					
+					
+					/* ############### PRINT TESTS ############### */
+					System.out.println(formatDateTime);
+					System.out.println("THE BOOKING ID IS: " + bookingID);
 				}
 				// Do stuff with change requests
 				if (input[0].equals("Change")) {
@@ -78,16 +82,12 @@ public class VanRentalSystem {
 					System.out.println("--- PRINT LINE ------------------------");
 				}
 				
-				// (2) View hashmap
-					// Get a set of the hashmap entries
-				//Set set = depotMap.entrySet();
-					// Get an iterator OR
-					// Don't use an iterator, simply use the get() put() functions
-					// (If you don't need to perform operations of key-value pairs)
-				
-				// (3) Do request, change, cancellation operations
+				// DATE TIME PRINT FORMAT
+				// hour     HH:MM   (24:00 system)
+				// month    MMM     (JAN, FEB, MAR)
+				// day/date DD      (1-31)
 
-				System.out.println(line);					// prints the line
+				System.out.println(line);	// prints the line
 			}
 		}
 

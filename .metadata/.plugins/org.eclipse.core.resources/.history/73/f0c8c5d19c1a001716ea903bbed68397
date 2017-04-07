@@ -1,0 +1,11 @@
+import java.util.*;
+import java.io.*;
+
+public class Booking {
+	
+	// Booking constructor
+	public Booking() {
+	}
+	
+	
+}

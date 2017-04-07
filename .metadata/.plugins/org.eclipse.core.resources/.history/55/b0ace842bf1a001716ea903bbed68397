@@ -1,0 +1,14 @@
+import java.util.*;
+import java.io.*;
+
+// Purpose of this class
+	//
+
+public class Booking {
+	
+	// Booking constructor
+	public Booking() {
+	}
+	
+	
+}
