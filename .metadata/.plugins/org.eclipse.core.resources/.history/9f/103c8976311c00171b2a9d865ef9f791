@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+import java.time.*;
+
+/**
+ * This class represents the entry point
+ * for vans and van bookings.
+ * 
+ * It handles all booking requests, changes
+ * and cancellations. It also stores info
+ * for output printing purposes.
+ *
+ */
+public class VanSystem {
+
+	ArrayList<CamperVan> realVanList;		// True vanList
+	ArrayList<CamperVan> vanListPrint;		// purely for output printing purposes (Cleans every instance of a booking, change, cancellation)
+	int requestID;							// purely for output printing purposes (Cleans every instance of a booking, change, cancellation)
+	
+	public VanSystem() {
+		this.realVanList = new ArrayList<CamperVan>();
+		this.vanListPrint = new ArrayList<CamperVan>();
+	}
+	
+	public void makeVanBooking(int bookingID, LocalDateTime startDT, LocalDateTime endDT) {
+		VanBooking booking = new VanBooking(bookingID, startDT, endDT);
+		int arraySize = realVanList.size();
+		for (int i = 0; i < arraySize; i++) {
+			CamperVan van = realVanList.get(i);
+			int numBookings = van.bookings.size();
+			
+		}
+		// If error occurs, print "Booking rejected"
+	}
+	
+	
+	
+
+}

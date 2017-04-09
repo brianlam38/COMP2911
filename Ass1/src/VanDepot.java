@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.time.*;
 
 public class VanDepot {
 
@@ -12,11 +13,13 @@ public class VanDepot {
 		this.vanList = new ArrayList<CamperVan>();
 	}
 	
+	/**
+	 * Add a new van into depot's list
+	 */
 	// Adding new van object van list
-	public void addVan(String vanName, String vanType, int vanOrder) {
-		CamperVan van = new CamperVan(vanName, vanType, vanOrder);
+	public void addVan(String depotBelong, String vanName, String vanType) {
+		CamperVan van = new CamperVan(depotBelong, vanName, vanType);
 		vanList.add(van);
-		System.out.println("THIS VAN HAS BEEN ADDED: " + van.name);
 	}
 	
 	/**
@@ -34,6 +37,8 @@ public class VanDepot {
 				continue;
 			} else {
 				request.vanList.add(validVan);
+				validVan.start = request.start;
+				validVan.end = request.end;
 				numAuto--;
 			}
 		}

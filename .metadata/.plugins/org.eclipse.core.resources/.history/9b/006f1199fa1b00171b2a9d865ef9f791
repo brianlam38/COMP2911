@@ -1,0 +1,8 @@
+/**
+ * Handles van's availability information
+ * @author brianlam
+ *
+ */
+public class VanBooking {
+
+}

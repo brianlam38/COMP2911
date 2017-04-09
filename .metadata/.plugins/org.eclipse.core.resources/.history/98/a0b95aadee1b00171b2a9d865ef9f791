@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class CamperVan {
+	
+	/**
+	 * Constructs a new van with the van's name.
+	 * @param vanName
+	 */
+	public CamperVan(String vanName) {
+		this.name = name;
+		this.bookings
+	}
+
+}

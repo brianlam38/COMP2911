@@ -1,0 +1,23 @@
+import java.util.*;
+import java.time.LocalDateTime;
+
+/**
+ * Allows other classes to perform checks to see if van is available in the requested time period
+ *
+ */
+public class VanBooking {
+	
+	String type;
+	int ID;
+	LocalDateTime start;
+	LocalDateTime end;
+	
+	// Constructor
+	public VanBooking(String type, int bookingID, LocalDateTime startDT, LocalDateTime endDT) {
+		this.type = type;
+		this.ID = bookingID;
+		this.start = startDT;
+		this.end = endDT;
+	}
+	
+}

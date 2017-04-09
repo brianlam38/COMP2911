@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
+import java.time.*;
+//import java.time.format.DateTimeFormatter;
+
+/**
+ * Booking system class.
+ * @author brianlam
+ *
+ */
+public class BookingSystem {
+
+	// List of all vans belonging to this booking
+	private LinkedList<CamperVan> vans;
+	// List of all depots belonging to this booking
+	private ArrayList<Depot> depots;
+
+	}
+	
+	// Method for creating a new instance of booking
+}

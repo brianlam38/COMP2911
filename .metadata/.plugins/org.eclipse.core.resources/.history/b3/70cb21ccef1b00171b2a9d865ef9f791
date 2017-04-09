@@ -1,0 +1,23 @@
+import java.util.*;
+
+/**
+ * A single CamperVan with it's associated bookings.
+ *
+ * This class provides methods for placing bookings,
+ * changes and cancellations for the room.
+ */
+public class CamperVan {
+	
+    private String name;
+    private LinkedList<RoomBooking> bookings;
+	
+	/**
+	 * Constructs a new van with the van's name.
+	 * @param vanName
+	 */
+	public CamperVan(String vanName) {
+		this.name = name;
+		this.bookings
+	}
+
+}

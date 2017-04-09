@@ -17,6 +17,6 @@ public class Booking {
 		this.end = endBooking;
 		this.auto = numAuto;
 		this.manual = numManual;
-		this.vanList = new ArrayList<CamperVan>();;	// list of depots in booking
+		this.vanList = new ArrayList<CamperVan>();	// list of depots in booking
 	}
 }

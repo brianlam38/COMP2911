@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+import java.time.*;
+
+/**
+ * This class represents the entry point
+ * for vans and van bookings.
+ * 
+ * It handles all booking requests, changes
+ * and cancellations. It also stores info
+ * for output printing purposes.
+ *
+ */
+public class VanSystem {
+
+	ArrayList<CamperVan> vanListPrinting;	// purely for output printing purposes (Cleans every instance of a booking, change, cancellation)
+	int requestID;							// purely for output printing purposes (Cleans every instance of a booking, change, cancellation)
+	
+	public VanSystem(int bookingID) {
+		this.requestID =
+	}
+	
+	
+
+}

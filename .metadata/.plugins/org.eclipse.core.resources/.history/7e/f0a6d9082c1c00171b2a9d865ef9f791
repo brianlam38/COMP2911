@@ -1,0 +1,14 @@
+import java.io.*;
+import java.util.*;
+import java.time.*;
+
+/**
+ * This class represents the entry point for
+ * vans and van bookings
+ * @author brianlam
+ *
+ */
+public class VanSystem {
+
+	ArrayList<CamperVan> vanList;
+}

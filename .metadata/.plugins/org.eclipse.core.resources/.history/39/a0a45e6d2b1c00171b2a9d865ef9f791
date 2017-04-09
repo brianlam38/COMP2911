@@ -1,0 +1,41 @@
+import java.util.*;
+
+/**
+ * A single CamperVan with it's associated bookings.
+ *
+ * This class provides methods for placing bookings,
+ * changes and cancellations for the room.
+ */
+public class CamperVan {
+	
+    private String name;
+    private ArrayList<VanBooking> bookings;
+	
+	/**
+	 * Constructs a new van with the van's name.
+	 * @param vanName
+	 */
+	public CamperVan(String vanName) {
+		this.name = name;
+		this.bookings = new ArrayList<VanBooking>();
+	}
+	
+    public boolean isAvailable(BookingTimePeriod period, int capacity) {
+        if (this.capacity < capacity)
+            return false;
+
+        for (int week = 0; week < period.getNumWeeks(); week++) {
+            Calendar thisTime = period.getTime();
+            thisTime.add(Calendar.WEEK_OF_YEAR, week);
+
+            RoomBooking request = new RoomBooking("", "", thisTime,
+                    period.getHours());
+
+            for (RoomBooking booking : bookings)
+                if (booking.overlaps(request))
+                    return false;
+        }
+
+        return true;
+    }
+}
