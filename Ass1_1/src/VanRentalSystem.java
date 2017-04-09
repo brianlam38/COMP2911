@@ -67,18 +67,32 @@ public class VanRentalSystem {
 	 * number of auto/manual vans requested.
 	 */
 	public static void bookAllVans(int numAuto, int numManual, int bookingID, LocalDateTime startBooking, LocalDateTime endBooking) {
-		boolean overlap = false;
-		while (numAuto != 0) {															// book in all autos
+		boolean noVanFound = false;
+		// Book in all auto vans
+		while (numAuto != 0) {
 			System.out.println("--- BOOKING AUTO --------- AUTO LEFT = " + numAuto);
-			overlap = system.makeVanBooking("Automatic", bookingID, startBooking, endBooking);
+			noVanFound = system.makeVanBooking("Automatic", bookingID, startBooking, endBooking);
 			numAuto--;
-			if (overlap == true) break;
+			// No van can be found for requested period, remove partial bookings
+			if (noVanFound == true) {
+				System.out.println("Booking rejected");
+				System.out.println();
+				system.deleteVanBooking(bookingID);
+				break;
+			}
 		}
-		while (numManual != 0) {														// book in all manuals
+		// Book in all manual vans
+		while (numManual != 0) {
 			System.out.println("--- BOOKING MANUAL --------- MANUAL LEFT = " + numManual);
-			overlap = system.makeVanBooking("Manual", bookingID, startBooking, endBooking);
+			noVanFound = system.makeVanBooking("Manual", bookingID, startBooking, endBooking);
 			numManual--;
-			if (overlap == true) break;
+			// No van can be found for requested period, remove partial bookings
+			if (noVanFound == true) {
+				System.out.println("Booking rejected");
+				System.out.println();
+				system.deleteVanBooking(bookingID);
+				break;
+			}
 		}
 	}
 

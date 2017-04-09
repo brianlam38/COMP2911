@@ -38,7 +38,6 @@ public class VanSystem {
 		System.out.println("NEWBOOKING TYPE: " + newBooking.type);
 		System.out.println("NEWBOOKING START: " + newBooking.start);
 		System.out.println("NEWBOOKING END: " + newBooking.end);
-		boolean overlap = false;
 		boolean vanBooked = false;
 		// Scan through CamperVan list	
 		int arraySize = realVanList.size();
@@ -57,6 +56,7 @@ public class VanSystem {
 				vanListPrint.add(van);
 				System.out.println("#### FIRST VAN BOOKING ##### = " + newBooking.ID);
 				System.out.println();
+				vanBooked = true;
 				break;
 			}
 			// Scan through all Bookings per CamperVan
@@ -74,11 +74,8 @@ public class VanSystem {
 					System.out.println();
 					break;
 				}
-				// Date overlaps, print reject
+				// Date overlaps, check next CamperVan
 				if (dateOverlap(origBooking.start, origBooking.end, newBooking.start, newBooking.end) == true) {
-					System.out.println("Booking rejected");
-					overlap = true;
-					System.out.println();
 					break;
 				// Valid booking, add to CamperVan
 				} else {
@@ -91,9 +88,9 @@ public class VanSystem {
 				}
 			}
 			if (vanBooked == true) break;
-			if (overlap == true) break;
 		}
-		if (overlap == true) {
+		// If all vans have been checked but no possible van exists for requested booking time
+		if (vanBooked == false) {		
 			return true;
 		} else {
 			return false;
@@ -109,6 +106,7 @@ public class VanSystem {
 			System.out.println("--- CHECKING IN CAMPERVAN ---");
 			CamperVan van = realVanList.get(i);
 			if (van.bookings.isEmpty()) {
+				System.out.println("CAMPERVAN BOOKING LIST IS EMPTY - NOTHING TO REMOVE");
 				continue;
 			}
 			int numBookings = van.bookings.size();
