@@ -1,17 +1,15 @@
-import java.io.*;
+/**
+ * COMP2911 VanRentalSystem Assignment 1
+ * Date: April 2017
+ * Author: Brian Lam
+ */
 import java.util.*;
-import java.util.Map.Entry;
-import java.time.*;
-//import java.time.format.DateTimeFormatter;
 
 /**
- * Booking system class.
- * @author brianlam
- *
+ * Class for handling output printing
  */
 public class PrintOutput {
-
-
 	
-	// Method for creating a new instance of booking
+	
+	
 }

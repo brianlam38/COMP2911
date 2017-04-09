@@ -1,0 +1,56 @@
+X Read input line-by-line + Parses information into VanSystem
+	//				   - #### Methods:
+	//				   X Creates a HashMap of <Key DepotName, Object CamperVan>
+	//				   X Creates a van object
+	//				   X Add van object to VanSystem's ArrayList<CamperVan> (will be in order of declaration)
+	//				   X Hash van into HashMap<DepotName, CamperVan> (mainly for "Printing" functionality
+	//				   - #### Stores information about:
+	//				   X HashMap<key DepotName, object CamperVan>	(mainly for "Printing" functionality
+	
+	// VanSystem	   - ENTRY POINT FOR VANS + BOOKINGS
+	//				   - #### Methods:
+	//				   X Creates a VanBooking object (identifier: bookingID)
+	//				   X BOOKING: Looks through its ArrayList of vans.
+	//				   X 		  For each CamperVan, check if it is available @specified booking time
+	//				   X		      Compare REQUESTED TIME / EXISTING TIME in each VanBooking object in Van's List
+	//				   X		  If success, add VanBooking object to CamperVan's ArrayList<VanBooking>
+	//				   X		  Else check next CamperVan.
+	//				   - CHANGES: Change = Cancellation + ReBook
+	//				   X		  Perform cancellation
+	//				   X		  Perform booking with updated request
+	//				   X CANCELLATIONS: Look through its ArrayList of vans.
+	//				   X				For each CamperVan
+	//				   X					If VanBooking.ID = Cancellation.ID
+	//				   X					Delete VanBooking object from ArrayList<VanBooking>
+	//				   - #### Stores information about:
+	//				   X Integer requestID = bookingID, changeID, cancellationID
+	//				   X ArrayList<CamperVan> For each booking, change, cancel, add(CamperVan)     
+	//						 For each CamperVan in List
+	//						 	  String currDepot
+	//							  If currDepot.equals("nothing)					   // First depot instance
+	//								 Print CamperVan.depotName
+	//								 currDepot = CamperVan.depotName	
+	//								 Print currDepot
+	//							  Else If !currDepot.equals(CamperVan.depotName)   // New depot instance
+	//								 Print ";"
+	//								 Print CamperVan.depotName
+	//								 currDepot = CamperVan.depotName
+	//							  Print CamperVan.name
+	//				   - Resulting string should be String: Booking + requestID + (currDepot1 + van.name + van.name + currDepot2 + van.name + van.name)
+	//				   - Clear List after every booking, change, cancel
+	
+	// VanBooking      X VANBOOKING OBJECT (identifier: BookingID)
+	//				   - #### Methods:
+	//				   - Facilitates performing date/time availability checks for CamperVans
+	//				   - Facilitates performing auto/manual checks for CamperVans
+	//				   - #### Stores information about:
+	//				   X Current BookingID, VanBooking's LocalDateTime start, LocalDateTime end
+	
+	// CamperVan	   X CAMPERVAN OBJECT (identifier: vanName)
+	// 				   - #### Stores information about:
+	//				   X DepotName, VanName, VanType, ArrayList<VanBookings
+	
+	// PrintClass	   - Class to print all the correct output
+	//				   - #### Booking
+	//				   - String = nothing
+	//				   - Called upon by VanSystem per booking, change, cancellation

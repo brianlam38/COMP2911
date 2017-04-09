@@ -1,0 +1,52 @@
+/**
+ * COMP2911 VanRentalSystem Assignment 1
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+
+import java.time.LocalDateTime;
+import java.util.*;
+
+/**
+ * A single CamperVan with it's associated bookings.
+ *
+ * This class provides methods for placing bookings,
+ * changes and cancellations for the room.
+ */
+public class CamperVan {
+	
+	boolean checkedBooking;
+	String depot;
+    String name;
+    String type;
+    ArrayList<VanBooking> bookings;
+	
+	/**
+	 * Constructs a new van with the van's name.
+	 * @param vanName
+	 */
+	public CamperVan(String depotName, String vanName, String vanType) {
+		this.checkedBooking = false;
+		this.depot = depotName;
+		this.name = vanName;
+		this.type = vanType;
+		this.bookings = new ArrayList<VanBooking>();
+	}
+	
+	public void sortVanBookings() {
+		int bookingSize = bookings.size();
+		// Iterate through Van Bookings
+		for (int i = 0; i < bookingSize-1; i++) {
+			VanBooking bCurr = bookings.get(i);
+			VanBooking bNext = bookings.get(i+1);
+			for (int j = 0; j < bookingSize-1; j++) {
+				// If curr start > next start, then swap.
+				if (bCurr.start.compareTo(bNext.start) == 1) {
+					VanBooking temp = bCurr;
+					bookings.add(bookingCurr);
+					bookings.remove(i);
+				}
+			}
+		}
+	}
+}

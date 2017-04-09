@@ -1,4 +1,9 @@
-import java.util.*;
+/**
+ * COMP2911 VanRentalSystem Assignment 1
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+
 import java.time.LocalDateTime;
 
 /**
@@ -23,5 +28,4 @@ public class VanBooking {
 		this.start = startDT;
 		this.end = endDT;
 	}
-	
 }

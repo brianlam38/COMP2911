@@ -1,0 +1,29 @@
+/**
+ * COMP2911 VanRentalSystem Assignment 1
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+import java.util.*;
+
+/**
+ * Class for handling output printing
+ */
+public class PrintOutput {
+	
+	
+	public static void printDepotBookings() {
+		int vanList = system.realVanList.size();
+		for (int i = 0; i < vanList; i++) {
+			CamperVan van = system.realVanList.get(i);
+			if (van.depot.equals(requestedDepot)) {
+				van.sortVanBookings();
+				int bookingList = van.bookings.size();
+				for (int j = 0; j < bookingList; j++) {
+					VanBooking booking = van.bookings.get(j);
+					String startAndEnd = formatDateTime(booking.start, booking.end);
+					System.out.println(requestedDepot + " " + van.name + " " + startAndEnd);
+				}
+			}
+		}
+	}
+}
