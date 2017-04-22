@@ -1,0 +1,37 @@
+# Testing booking a large number of vehicles across all depots
+
+Location CBD Wicked Automatic
+Location CBD Zeppelin Automatic
+Location CBD Floyd Automatic
+Location Penrith Slovan Automatic
+Location Penrith Slowervan Automatic
+Location Penrith Queen Manual
+Location Penrith Queen Manual
+Location Cremorne Ramones Automatic
+Location Cremorne Nirvana Automatic
+Location Cremorne Ramones Automatic
+Location Cremorne Lololol Manual
+Location Cremorne Loltest Manual
+Location Cremorne Fasten Manual
+Location Sutherland Purple Manual
+Location Sutherland Hendrix Manual
+Location Sutherland Iam Automatic
+Location Sutherland The Automatic
+Location Sutherland Best Automatic
+Location Sutherland Hahahaha Automatic
+
+Request 1 23 Mar 12 12 Mar 13 5 Automatic 3 Manual
+Request 2 11 Mar 14 12 Mar 15 6 Automatic 4 Manual
+Request 3 13 Mar 16 14 Mar 17 2 Automatic 2 Manual
+Request 4 15 Mar 18 12 Mar 19 10 Automatic 6 Manual
+Request 5 12 Mar 20 15 Mar 21 4 Manual
+Request 6 13 Mar 22 21 Mar 23 3 Automatic 13 Manual
+Request 7 13 Mar 24 21 Mar 25 13 Automatic 2 Manual
+Request 8 13 Mar 26 21 Mar 27 5 Automatic 8 Manual
+Request 9 13 Mar 28 21 Mar 29 10 Automatic 10 Manual
+Request 10 13 Mar 30 21 Mar 31 20 Automatic 6 Manual
+
+Print CBD
+Print Penrith
+Print Cremorne
+Print Sutherland

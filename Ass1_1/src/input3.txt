@@ -1,0 +1,47 @@
+# Testing many depot and van declarations with a lot of Print commands
+
+Location CBD Wicked Automatic
+Location CBD Zeppelin Automatic
+Location CBD Floyd Automatic
+Location Penrith Slovan Automatic
+Location Penrith Slowervan Automatic
+Location Penrith Queen Manual
+Location Penrith Queen Manual
+Location Cremorne Ramones Automatic
+Location Cremorne Nirvana Automatic
+Location Cremorne Ramones Automatic
+Location Cremorne Lololol Manual
+Location Cremorne Loltest Manual
+Location Cremorne Fasten Manual
+Location Sutherland Purple Manual
+Location Sutherland Hendrix Manual
+Location Sutherland Iam Automatic
+Location Cooldepot The Automatic
+Location Warmdepot Best Automatic
+Location Hotdepot Hahahaha Manual
+Location This Haha Automatic
+Location Is Hahahahahaha Automatic
+Location Alot Lolol Manual
+Location Of Lolol2 Automatic
+Location Depots Lolol3 Manual
+
+# Test whether campervans can be rented from different depots when one depot exhausts its allocation of vehicles
+Request 1 23 Mar 25 12 Mar 26 6 Automatic 4 Manual
+        # Request 1 is for 3 Automatic and 1 Manual campervan from 23:00 on Mar 25 to 12:00 on Mar 26
+        # Assign Wicked, Zeppelin, Floyd of CBD and Queen of Penrith
+        # Output Booking 1 CBD Wicked, Zeppelin, Floyd; Penrith Queen
+Request 2 10 Mar 25 11 Mar 26 4 Automatic 1 Manual
+Request 3 12 Mar 25 13 Mar 26 2 Automatic 4 Manual
+Request 4 14 Mar 25 15 Mar 26 2 Automatic 1 Manual
+Print CBD
+Print Penrith
+Print Cremorne
+Print Sutherland
+Print Cooldepot
+Print Warmdepot
+Print Hotspot
+Print This
+Print Is
+Print A lot
+Print Of
+Print Depots

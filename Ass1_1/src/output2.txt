@@ -1,0 +1,28 @@
+Booking 1 CBD Wicked, Zeppelin, Floyd; Penrith Slovan, Slowervan, Queen, Queen; Cremorne Lololol
+Booking 2 Cremorne Ramones, Nirvana, Ramones; Sutherland Iam, The, Best; Cremorne Loltest, Fasten; Sutherland Purple, Hendrix
+Booking rejected
+Booking rejected
+Booking rejected
+Booking rejected
+Booking rejected
+Booking rejected
+Booking rejected
+Booking rejected
+CBD Wicked 23:00 Mar 12 12:00 Mar 13
+CBD Zeppelin 23:00 Mar 12 12:00 Mar 13
+CBD Floyd 23:00 Mar 12 12:00 Mar 13
+Penrith Slovan 23:00 Mar 12 12:00 Mar 13
+Penrith Slowervan 23:00 Mar 12 12:00 Mar 13
+Penrith Queen 23:00 Mar 12 12:00 Mar 13
+Penrith Queen 23:00 Mar 12 12:00 Mar 13
+Cremorne Ramones 11:00 Mar 14 12:00 Mar 15
+Cremorne Nirvana 11:00 Mar 14 12:00 Mar 15
+Cremorne Ramones 11:00 Mar 14 12:00 Mar 15
+Cremorne Lololol 23:00 Mar 12 12:00 Mar 13
+Cremorne Loltest 11:00 Mar 14 12:00 Mar 15
+Cremorne Fasten 11:00 Mar 14 12:00 Mar 15
+Sutherland Purple 11:00 Mar 14 12:00 Mar 15
+Sutherland Hendrix 11:00 Mar 14 12:00 Mar 15
+Sutherland Iam 11:00 Mar 14 12:00 Mar 15
+Sutherland The 11:00 Mar 14 12:00 Mar 15
+Sutherland Best 11:00 Mar 14 12:00 Mar 15

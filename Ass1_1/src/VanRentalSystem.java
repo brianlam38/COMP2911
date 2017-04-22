@@ -74,7 +74,6 @@ public class VanRentalSystem {
 			// No van can be found for requested period, remove partial bookings
 			if (noVanFound == true) {
 				System.out.println("Booking rejected");
-				System.out.println();
 				system.deleteVanBooking(bookingID);
 				return false;
 			}
@@ -92,6 +91,34 @@ public class VanRentalSystem {
 			}
 		}
 		return true;
+	}
+	/**
+	 * Prints current request output
+	 */
+	public static void printBookingRequest(int bookingID) {
+		String starting = "Booking " + bookingID + " ";
+		int printSize = system.vanListPrint.size();
+		String currDepot = "nothing";
+		// Loop through van print list
+		for (int i = 0; i < printSize; i++) {
+			CamperVan van = system.vanListPrint.get(i);
+			// First depot
+			if (currDepot.equals("nothing")) {
+				currDepot = van.depot;
+				starting += currDepot;
+				starting += " " + van.name;
+			// Following new depots
+			} else if (!(currDepot.equals(van.depot))) {
+				starting += ";";
+				currDepot = van.depot;
+				starting += " " + currDepot;
+				starting += " " + van.name;
+			} else {
+				starting += ", " + van.name;
+			}
+		}
+		System.out.println(starting);
+		system.vanListPrint.clear();
 	}
 	/**
 	 * Prints all van bookings in a specified depot.
@@ -121,27 +148,22 @@ public class VanRentalSystem {
 			sc = new Scanner(new FileReader(args[0])); 
 			while (sc.hasNextLine()) { 
 				String line = sc.nextLine();
-				String[] input = line.split("\\s+");
-				
-				// Parses depot / van declaration string
+				String[] input = line.split("\\s+");			
+				// #### Parses depot / van declaration string
 				if (input[0].equals("Location")) {
 					String depotName = input[1];
 					String vanName = input[2];
-					String vanType = input[3];
-					
+					String vanType = input[3];		
 					CamperVan van = new CamperVan(depotName, vanName, vanType);
-					system.realVanList.add(van);
-							
-				// Skip comments and empty lines	
+					system.realVanList.add(van);			
+				// #### Skip comments and empty lines	
 				} else if (input[0].equals("#") || input[0].isEmpty()) {
 					continue;
-				// Booking request
+				// #### Booking request
 				} else if (input[0].equals("Request")) {
-					//System.out.println("###################################################################### BOOKING REQUEST");
 					int bookingID = Integer.parseInt(input[1]);
 					LocalDateTime startBooking = setStart(input[2], input[3], input[4]);
 					LocalDateTime endBooking = setEnd(input[5], input[6], input[7]);
-					
 					// determine # auto/man bookings
 					int numAuto, numManual = 0;
 					if (input[9].equals("Automatic")) {				
@@ -170,30 +192,9 @@ public class VanRentalSystem {
 						van.checkedBooking = false;
 					}
 					
-					// BOOKING: Printing depot name
-					String starting = "Booking " + bookingID + " ";
-					int printSize = system.vanListPrint.size();
-					String currDepot = "nothing";
-					// Loop through van print list
-					for (int i = 0; i < printSize; i++) {
-						CamperVan van = system.vanListPrint.get(i);
-						// First depot
-						if (currDepot.equals("nothing")) {
-							currDepot = van.depot;
-							starting += currDepot;
-							starting += " " + van.name;
-						// Following new depots
-						} else if (!(currDepot.equals(van.depot))) {
-							starting += ";";
-							currDepot = van.depot;
-							starting += " " + currDepot;
-							starting += " " + van.name;
-						} else {
-							starting += ", " + van.name;
-						}
-					}
-					System.out.println(starting);
-					system.vanListPrint.clear();
+					// Print formatted booking request output
+					printBookingRequest(bookingID);
+
 					
 				} else if (input[0].equals("Change")) {
 					//System.out.println("###################################################################### BOOKING CHANGE");
