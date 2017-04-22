@@ -1,0 +1,8 @@
+import java.util.*;
+
+public class MainSystem {
+
+}
+
+/* DESIGN */
+// Single truck, delivering things one-at-a-time

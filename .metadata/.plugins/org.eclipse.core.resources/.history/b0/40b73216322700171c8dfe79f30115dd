@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class MainSystem {
+
+}
+
+/* DESIGN */
+// Single truck, completing one job at a time.
+// AIM: Schedule an optimal route for the truck to complete a joblist (set of jobs)
+// Truck can be run continuously (perhaps with different drivers), so the system can focus on scheduling the optimal route
+// The journey may include additional/multiple road trips from the end of one job to the start of the next job.
+
+// JOBLIST
+// Joblist contains X number of distinct jobs
