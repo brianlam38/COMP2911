@@ -1,0 +1,38 @@
+import java.io.FileNotFoundException;
+
+
+import java.io.FileReader;
+import java.util.*;
+
+public class FreightSystem {
+	/**
+	 * Parses input line-by-line and issues commands.
+	 */
+	public static void main(String[] args) {
+		Scanner sc = null;
+		try {
+			sc = new Scanner(new FileReader(args[0])); 
+			while (sc.hasNextLine()) { 
+				String line = sc.nextLine();
+				String[] input = line.split("\\s+");			
+				// Parses unloading cost strings
+				if (input[0].equals("Unloading")) {
+					// do stuff
+				}
+				// Parses travel cost strings
+				if (input[0].equals("Cost")) {
+					// do stuff
+				}
+				// Parses specific job strings
+				if (input[0].equals("Job")) {
+					// do stuff
+				}
+			}
+		}
+		catch (FileNotFoundException e) {
+		}
+		finally {
+			if (sc != null) sc.close();
+		}
+	}	
+}
