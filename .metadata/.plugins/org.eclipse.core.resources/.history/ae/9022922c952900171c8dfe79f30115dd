@@ -1,0 +1,117 @@
+/**
+ * COMP2911 FreightSystem Assignment 2
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
+
+// SUMMARY
+// Main idea is to implement A* with a variety of different "strategy patterns" / different heuristic functions.
+// 1. Build basic initial Heuristic (Euclidean distance Heuristic)
+// 2. Test the base A* algorithm
+// 3. Build a second improved Heuristic function (do some research on this after building base version)
+// 4. Test the improved A* algorithm
+
+// OUTPUT
+// n nodes expanded (number of nodes taken OFF the queue)
+// if soln exists
+//		output total cost of the solution as an integer (should be same regardless of Heuristic / path)
+// else
+//		output "No solution"
+// Sequence of trips that make up the optimal solution
+//		Shown as Job Sydney to Bathurst
+//		Shown as Empty Bathurst to Wagga
+
+/**
+ * DESIGN
+ */
+// 1. FreightSystem		- MAIN SYSTEM
+//						-> Parse and processes input
+//						-> Generates graph + inserts data
+//						-> Stores input into data structures to be used by other classes.
+//						- DATA
+//						-> GraphMatrix object
+//						-> Integer numVertices (incremented by addVertexList)
+//						-> Array<Integer> unloadCost
+//						-> Array<String> cities	(index number = cities, used throughout system)
+//						
+//						- METHODS
+//						-> Private: add vertexList to arrayList + increment numVertices (using unloading input)
+//						-> Private: add vertex unloading cost to unloadArray
+//						-> Private: create vertexObj w/ travelCost + insert into arrayList (using cost input)
+
+//						-> Delegates input / requests to the STRATEGY object
+//						-> Delegates _unloading_ input to the OPTIMISER
+//						-> Delegates _travelCost_ input to the OPTPIMISER
+
+// 2. Strategy			- STRATEGY SELECTOR SYSTEM: AN INTERFACE THAT DEFINES BEHAVIOUR OF PATH SELECTION
+//						-> Selects the CONCRETE STRATEGY object to be used (heuristic function / strategy)
+//						-> Calls methods from the selected CONCRETE STRATEGY
+
+// 3. Concrete Strategy - CONCRETE STRATEGY / HEURISTIC
+//						-> Contains methods to calculate the Heuristic cost
+//						-> Returns the Heuristic cost to be used in calculating the total cost
+
+// 4. Optimiser			- PRIMARY ALGORITHM
+//						-> Performs the job unloading / travel operations
+//						- DATA
+//						-> PQ
+//						-> prev[] array / collection >> the previous vertex
+//						-> dist[] array / collection >> the cost so far
+//						- METHODS
+//						-> Private Method to initialise prev[] = -1			>> using #vertices from main sys
+//						-> Private Method to initialise dist[] = infinite	>> using #vertices from main sys
+//						
+//						-> Set dist[sourceNode] = 0
+//						->
+
+
+public class FreightSystem {
+	
+	public static ArrayList<Integer> unloadCost = new ArrayList<Integer>();
+	
+	private static ArrayList<String> city = new ArrayList<String>();
+	private static int numCity = 0;
+	
+	/**
+	 * Parses input line-by-line and issues commands.
+	 */
+	public static void main(String[] args) {
+		Scanner sc = null;
+		try {
+			sc = new Scanner(new FileReader(args[0])); 
+			while (sc.hasNextLine()) { 
+				String line = sc.nextLine();
+				String[] input = line.split("\\s+");			
+				// Parses unloading cost and city strings
+				if (input[0].equals("Unloading")) {
+					int unload = Integer.parseInt(input[1]);
+					unloadCost.add(numCity, unload);
+					city.add(numCity, input[2]);
+					numCity++;
+					
+					
+					for (int i = 0; i < numCity; i++) {
+						System.out.println(city[i]);
+					}
+				}
+				// Parses travel cost strings
+				if (input[0].equals("Cost")) {
+					// do stuff
+				}
+				// Parses specific job strings
+				if (input[0].equals("Job")) {
+					// do stuff
+				}
+			}
+		}
+		catch (FileNotFoundException e) {
+		}
+		finally {
+			if (sc != null) sc.close();
+		}
+	}	
+}

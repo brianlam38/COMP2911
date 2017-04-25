@@ -1,0 +1,21 @@
+/**
+ * Adjacency Matrix Graph Representation
+ * @author brianlam
+ *
+ */
+
+
+public class GraphMatrix {
+
+	private int numVertices'
+	private int graph[][];
+	
+	// Create graph with n numVertices
+	public GraphMatrix(int numVertices) {
+		if (numVertices < 0) throw new RuntimeException("Vertices must be non-negative");
+		this.graph = new int[numVertices][numVertices];
+	}
+	
+	
+	
+}

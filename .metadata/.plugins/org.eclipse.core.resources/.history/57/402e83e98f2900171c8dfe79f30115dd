@@ -1,0 +1,45 @@
+/**
+ * Adjacency Matrix Graph Representation
+ * @author brianlam
+ *
+ */
+
+
+public class GraphMatrix {
+
+	private int numVertices;
+	private int graph[][];
+	
+	// Create graph with n numVertices
+	public GraphMatrix(int n) {
+		if (n < 0) throw new RuntimeException("Vertices must be non-negative");
+		this.graph = new int[n][n];
+		this.numVertices = n;
+	}
+	
+	/**
+	 * 
+	 * @precondition edge [v][w] doesn't exist
+	 */
+	// Add path from v->w and w->v
+	public void addEdge(int graph[][], int unloadCost, int v, int w) {
+		graph[v][w] = unloadCost;
+		graph[w][v] = unloadCost;
+	}
+	
+	/**
+	 * 
+	 * @postcondition edge [v][w] exists
+	 */
+	// Remove path from v->w and w->
+	public void removeEdge(int graph[][], int v, int w) {
+		graph[v][w] = -1;
+		graph[w][v] = -1;
+	}
+	
+	public boolean isConnected(int graph[][], int v, int w) {
+		if (graph[v][w]) return true;
+	}
+	
+	
+}
