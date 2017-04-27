@@ -30,32 +30,40 @@ import java.util.*;
  */
 // 1. FreightSystem		- MAIN SYSTEM
 //						-> Parse and processes input
-//						-> Generates graph + inserts data
-//						-> Stores input into data structures to be used by other classes.
+//						-> Generates graph obj + inserts data into it
+//						-> Stores other input to be used by other classes
 //						- DATA
-//						-> GraphMatrix object
-//						-> Integer numVertices (incremented by addVertexList)
-//						-> Array<Integer> unloadCost
-//						-> Array<String> cities	(index number = cities, used throughout system)
+//						-> HashMap<String, Integer> unloadCost
+//						-> HashMap<String, Integer> cities	(index number = cities, used throughout system)
+//						-> GraphMatrix graph object (main graph to store edges/weights)
+//						-> int numVertices
 //						
 //						- METHODS
-//						-> Private: add vertexList to arrayList + increment numVertices (using unloading input)
-//						-> Private: add vertex unloading cost to unloadArray
-//						-> Private: create vertexObj w/ travelCost + insert into arrayList (using cost input)
+//						-> Public: getCity(String cityName): return city number
+//						-> Public: getUnloadCost(String cityName): return unload cost
 
 //						-> Delegates input / requests to the STRATEGY object
 //						-> Delegates _unloading_ input to the OPTIMISER
 //						-> Delegates _travelCost_ input to the OPTPIMISER
 
-// 2. Strategy			- STRATEGY SELECTOR SYSTEM: AN INTERFACE THAT DEFINES BEHAVIOUR OF PATH SELECTION
+// 2. GraphMatrix		- MATRIX REPRESENTATION OF THE GRAPH
+//						-> Contains information about vertices, edges and their weights
+//						- DATA
+//						-> 2D Matrix
+//						- METHODS
+//						-> void addEdge
+//						-> void removeEdge
+//						-> boolean isConnected: is v connected with w?
+
+// 3. Strategy			- STRATEGY SELECTOR SYSTEM: AN INTERFACE THAT DEFINES BEHAVIOUR OF PATH SELECTION
 //						-> Selects the CONCRETE STRATEGY object to be used (heuristic function / strategy)
 //						-> Calls methods from the selected CONCRETE STRATEGY
 
-// 3. Concrete Strategy - CONCRETE STRATEGY / HEURISTIC
+// 4. Concrete Strategy - CONCRETE STRATEGY / HEURISTIC
 //						-> Contains methods to calculate the Heuristic cost
 //						-> Returns the Heuristic cost to be used in calculating the total cost
 
-// 4. Optimiser			- PRIMARY ALGORITHM
+// 5. Optimiser			- PRIMARY ALGORITHM
 //						-> Performs the job unloading / travel operations
 //						- DATA
 //						-> PQ
@@ -72,16 +80,33 @@ import java.util.*;
 public class FreightSystem {
 	
 	public static HashMap<String, Integer> unloadCost = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> city = new HashMap<String, Integer>();
 	public static GraphMatrix graph;
-	
-	private static HashMap<String, Integer> city = new HashMap<String, Integer>();
+	public static AStar algorithm;
+
 	private static int numCity = 0;
+	
+	/**
+	 * Take city string as key and return city/vertex number.
+	 */
+	public static int getCity(String cityName) {
+		return city.get(cityName);
+	}
+	
+	
+	/**
+	 * Take city string as key and return unload cost for city.
+	 */
+	public static int getUnloadCost(String cityName) {
+		return unloadCost.get(cityName);
+	}
 	
 	/**
 	 * Parses input line-by-line and issues commands.
 	 */
 	public static void main(String[] args) {
 		boolean graphExists = false;
+		boolean AStarExists = false;
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new FileReader(args[0])); 
@@ -90,22 +115,33 @@ public class FreightSystem {
 				String[] input = line.split("\\s+");			
 				// Parses unloading cost and city strings
 				if (input[0].equals("Unloading")) {
+					System.out.println("----------------------- PARSE UNLOAD COST AND CITY STRINGS -----------------------");
 					int unload = Integer.parseInt(input[1]);
 					unloadCost.put(input[2], unload);
 					city.put(input[2], numCity);
 					numCity++;
 					
-					// --- PRINT TESTS ---
+					// --- PRINT TESTS ------------------------------------------------------------------------------------
+					// CITY H.M: Print keys
+					System.out.println("### CURRENT CITIES/UNLOADS KNOWN ###");
 					System.out.println("NUMBER OF CITIES:" + numCity);
 					Set<String> keySet = city.keySet();
-					System.out.println(keySet);
+					System.out.println("CITY KEYSET = " + keySet);
+					// CITY H.M: Print values
+					Collection<Integer> vSet = city.values();
+					System.out.println("CITY VALUESET = " + vSet);
+					// UNLOAD H.M: Print values
 					Collection<Integer> valueSet = unloadCost.values();
 					System.out.println(valueSet);
-					System.out.println("### CURRENT CITIES/UNLOADS KNOWN ###");
-					// --- END TESTS ---
+					System.out.println("### ############################ ###");
+					// --- END TESTS ------------------------------------------------------------------------------------
 				}
 				// Create GraphMatrix object w/ matrix and Parses travel cost input into Matrix
 				if (input[0].equals("Cost")) {
+					System.out.println("----------------------- PARSE GRAPH EDGES AND WEIGHTS -----------------------");
+					Set<String> keySet = city.keySet();
+					System.out.println("CITY KEYSET = " + keySet);
+					
 					if (graphExists == false) {
 						graph = new GraphMatrix(numCity);
 						graphExists = true;
@@ -115,7 +151,7 @@ public class FreightSystem {
 					String dest = input[3];
 					graph.addEdge(travelCost, city.get(src), city.get(dest));
 					
-					// --- PRINT TESTS ---
+					// --- PRINT TESTS ---------------------------------------------------------------------------------
 					int row = 0;
 					for (int i = 0; i < numCity; i++) {
 						for (int j = 0; j < numCity; j++) {
@@ -125,13 +161,23 @@ public class FreightSystem {
 						System.out.println("  ---  ROW = " + row);
 					}
 					System.out.println("______________________");
-					// --- END TESTS ---
+					// --- END TESTS ------------------------------------------------------------------------------------
 				}
 				// Parses specific job strings
 				if (input[0].equals("Job")) {
-					// do stuff
+					System.out.println("----------------------- PARSE JOB REQUESTS -----------------------");
+					// Create A* object and initialise prev/dist arrays
+					if (!AStarExists) {
+						algorithm = new AStar();
+						algorithm.addToPQ(numCity);
+						algorithm.setDist(numCity);
+						AStarExists = true;
+					}
+					// Add jobs
 				}
 			}
+			// Run A* algorithm
+			//algorithm.aStar(city.get("Sydney"));
 		}
 		catch (FileNotFoundException e) {
 		}

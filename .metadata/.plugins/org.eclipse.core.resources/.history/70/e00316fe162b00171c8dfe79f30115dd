@@ -1,0 +1,14 @@
+
+public class JobSystem {
+
+	// IDEAS
+	
+	// check if all jobs are completed.
+	// if not
+	//		continue A* search
+	// else
+	//		stop search.
+	//		return success
+	
+	//
+}

@@ -1,0 +1,37 @@
+/**
+ * COMP2911 FreightSystem Assignment 2
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+
+import java.util.*;
+
+// DESIGN
+
+// Implement Djikstra's
+// Do a run-through of base case f(n) = g(n)
+// Implement Heuristic functions in Strategy Design
+// Do a run-through of uniform-cost + heuristic cost f(n) = g(n) + h(n)
+
+public class AStar {
+	
+	private PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+	private ArrayList<Integer> prev = new ArrayList<Integer>();
+	private ArrayList<Integer> dist = new ArrayList<Integer>();
+
+	public AStar() {
+		this.prev = new 
+		
+	}
+	
+	private void setPrev() {
+		
+	}
+	
+	private void setDist() {
+		
+	}
+	
+	
+	
+}
