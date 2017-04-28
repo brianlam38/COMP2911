@@ -1,0 +1,98 @@
+/**
+ * COMP2911 FreightSystem Assignment 2
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+
+import java.util.*;
+
+// DESIGN
+
+// Implement Djikstra's
+// Do a run-through of base case f(n) = g(n)
+// Implement Heuristic functions in Strategy Design
+// Do a run-through of uniform-cost + heuristic cost f(n) = g(n) + h(n)
+
+public class AStar {
+	
+	private PriorityQueue<Edge> pq;
+	private ArrayList<Integer> prev;
+	private ArrayList<Integer> dist;
+
+	public AStar(int numPaths) {
+		this.pq = new PriorityQueue<Edge>(10, new Comparator<Edge>() {
+		    public int compare(Edge edge1, Edge edge2) {
+		        if (edge1.getWeight() < edge2.getWeight()) return -1;
+		        if (edge1.getWeight() > edge2.getWeight()) return 1;
+		        return 0;
+		    }
+		});
+		this.prev = new ArrayList<Integer>();
+		this.dist = new ArrayList<Integer>();
+	}
+	
+	public void addToPQ(int numCity) {
+		for (int v = 0; v < numCity; v++) {
+			for (int w = 0; w < numCity; w++) {
+				int weight = FreightSystem.graph.getWeight(v, w);
+				Edge e = new Edge(v, w, weight);
+				if (weight < 0) {
+					continue;
+				} else {
+					pq.add(e);
+				}
+			}
+		}
+	}
+	
+	public void setDist(int numCity) {
+		int distStart = 0;
+		int distVal = 10000;
+		for (int i = 0; i < numCity; i++) {
+			dist.add(distVal);
+		}
+		// set start distance = 0
+		dist.set(FreightSystem.getCityID("Sydney"), distStart);
+	}
+	
+	// Currently, it is re-ordering based on natural type: vertex ID
+	// It needs to be ordered based on vertex ID's
+	
+	// Push path weights into PQ
+	// To extract start/end vertices of a weight, reverse and find it
+	
+	public void aStar(int start, int numCity) {
+		System.out.println(pq.size());						// TEST -- REMOVE
+		while(pq.size() != 0) {
+			Edge e = pq.poll();
+			System.out.println("############");				// TEST -- REMOVE
+			System.out.println("EDGE.S = " + e.getStartID());			// TEST -- REMOVE
+			System.out.println("EDGE.E = " + e.getEndID());			// TEST -- REMOVE
+			System.out.println("EDGE.W = " + e.getWeight());			// TEST -- REMOVE
+			for (int v = 0; v < numCity; v++) {
+				for (int w = 0; w < numCity; w++) {
+					
+				}
+				
+				int len = FreightSystem.graph.matrix[v][w];
+				System.out.println("LENGTH = " + len);		// TEST -- REMOVE
+				if (len < 0) {
+					System.out.println("NO EDGE -> SKIP");
+					continue;
+				}
+				System.out.println("EDGE EXISTS -> CHECKING IF IT IS SHORTER THAN CURRENT SHORTEST");
+				if (dist.get(v) + len < dist.get(w)) {
+					System.out.println("NEW PATH FOUND -> EDGE RELAXATION");
+					prev.set(w, v);
+					dist.set(w, (dist.get(v) + len));
+				}
+			}
+			System.out.println("----------------------");
+			System.out.println("PQ SIZE = " + pq.size());
+		}
+		System.out.println("FINAL PREV SIZE = " + prev.size());
+		System.out.println("FINAL PREV = " + prev);
+		System.out.println("FINAL DIST SIZE = " + dist.size());
+		System.out.println("FINAL DIST = " + dist);
+	}
+}

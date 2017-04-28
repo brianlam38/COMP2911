@@ -1,0 +1,8 @@
+import java.util.*;
+
+public class WeightCompare implements Comparator<Integer>{
+	
+	public int compare(Integer weightA, Integer weightB) {
+		if)
+	}
+}

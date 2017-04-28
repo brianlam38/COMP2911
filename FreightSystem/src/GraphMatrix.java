@@ -41,22 +41,8 @@ public class GraphMatrix {
 		matrix[w][v] = travelCost;
 	}
 	
-	/**
-	 * 
-	 * @postcondition edge [v][w] exists
-	 */
-	// Remove path from v->w and w->
-	public void removeEdge(int v, int w) {
-		matrix[v][w] = -1;
-		matrix[w][v] = -1;
-	}
-	
-	// Check if one vertex is connected to another
-	public boolean isConnected(int v, int w) {
-		if (matrix[v][w] > -1) {
-			return true;
-		} else {
-			return false;
-		}
+	// return edge weight between v->w
+	public int getWeight(int v, int w) {
+		return matrix[v][w];
 	}
 }

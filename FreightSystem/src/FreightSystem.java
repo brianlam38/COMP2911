@@ -81,6 +81,7 @@ public class FreightSystem {
 	
 	public static HashMap<String, Integer> unloadCost = new HashMap<String, Integer>();
 	public static HashMap<String, Integer> city = new HashMap<String, Integer>();
+	public static HashMap<Integer, String> cityStr = new HashMap<Integer, String>();
 	public static GraphMatrix graph;
 	public static AStar algorithm;
 
@@ -89,8 +90,15 @@ public class FreightSystem {
 	/**
 	 * Take city string as key and return city/vertex number.
 	 */
-	public static int getCity(String cityName) {
+	public static int getCityID(String cityName) {
 		return city.get(cityName);
+	}
+	
+	/**
+	 * Take cityID as key and return city string name.
+	 */
+	public static String getCityStr(int cityID) {
+		return cityStr.get(cityID);
 	}
 	
 	
@@ -99,6 +107,13 @@ public class FreightSystem {
 	 */
 	public static int getUnloadCost(String cityName) {
 		return unloadCost.get(cityName);
+	}
+	
+	/**
+	 * Return weight of edge between two vertices.
+	 */
+	public static int getWeight(int v, int w) {
+		return graph.matrix[v][w];
 	}
 	
 	/**
@@ -119,18 +134,23 @@ public class FreightSystem {
 					int unload = Integer.parseInt(input[1]);
 					unloadCost.put(input[2], unload);
 					city.put(input[2], numCity);
+					cityStr.put(numCity, input[2]);
 					numCity++;
 					
 					// --- PRINT TESTS ------------------------------------------------------------------------------------
-					// CITY H.M: Print keys
 					System.out.println("### CURRENT CITIES/UNLOADS KNOWN ###");
 					System.out.println("NUMBER OF CITIES:" + numCity);
+					// CITY H.M: Print key / value pairs
 					Set<String> keySet = city.keySet();
 					System.out.println("CITY KEYSET = " + keySet);
-					// CITY H.M: Print values
 					Collection<Integer> vSet = city.values();
 					System.out.println("CITY VALUESET = " + vSet);
-					// UNLOAD H.M: Print values
+					// CITYSTR H.M: Print key / value pairs
+					Set<Integer> keyStr = cityStr.keySet();
+					System.out.println("CITYSTR KEYSET = " + keyStr);
+					Collection<String> citySet = cityStr.values();
+					System.out.println("CITYSTR VALUESET = " + citySet);
+					// UNLOAD H.M: Print key / value pairs
 					Collection<Integer> valueSet = unloadCost.values();
 					System.out.println(valueSet);
 					System.out.println("### ############################ ###");
@@ -169,7 +189,7 @@ public class FreightSystem {
 					// Create A* object and initialise prev/dist arrays
 					if (!AStarExists) {
 						algorithm = new AStar();
-						algorithm.addToPQ(numCity);
+						algorithm.setDone(numCity);
 						algorithm.setDist(numCity);
 						AStarExists = true;
 					}
@@ -177,7 +197,7 @@ public class FreightSystem {
 				}
 			}
 			// Run A* algorithm
-			//algorithm.aStar(city.get("Sydney"));
+			algorithm.aStar(city.get("Sydney"), numCity);
 		}
 		catch (FileNotFoundException e) {
 		}
