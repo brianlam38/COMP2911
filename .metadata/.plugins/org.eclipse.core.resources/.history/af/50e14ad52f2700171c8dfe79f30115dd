@@ -1,8 +1,0 @@
-import java.util.*;
-
-public class MainSystem {
-
-}
-
-/* DESIGN */
-// Single truck, completing one job at a time.

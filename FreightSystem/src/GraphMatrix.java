@@ -9,19 +9,16 @@ import java.util.*;
 /**
  * A matrix representation of the Freight System Graph.
  * 
- * Contains methods to create a n*n matrix, add and remove edges
- * and check if two vertices are connected.
- *
+ * Contains methods to create a n*n matrix
  */
 public class GraphMatrix {
-
 	public int[][] matrix;
 	
 	/**
 	 * Constructor for the matrix
+	 * @param number of total vertices / cities
 	 * @precondition number of vertices n must not be -ve
 	 */
-	// Create graph with n numVertices and initialise with -ve weights
 	public GraphMatrix(int n) {
 		this.matrix = new int[n][n];
 		for (int i = 0; i < n; i++) {
@@ -32,16 +29,18 @@ public class GraphMatrix {
 	}
 	
 	/**
-	 * 
+	 * Add implied edge and weight to matrix
 	 * @precondition edge [v][w] doesn't exist
 	 */
-	// Add path from v->w and w->v
 	public void addEdge(int travelCost, int v, int w) {
 		matrix[v][w] = travelCost;
 		matrix[w][v] = travelCost;
 	}
 	
-	// return edge weight between v->w
+	/**
+	 * Grab specified edge weight
+	 * @precondition edge [v][w] exists
+	 */
 	public int getWeight(int v, int w) {
 		return matrix[v][w];
 	}

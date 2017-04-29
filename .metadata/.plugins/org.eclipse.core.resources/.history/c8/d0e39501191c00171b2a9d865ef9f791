@@ -1,9 +1,0 @@
-/**
- * Handles van's availability information
- * Allows other classes to perform checks to see if van is available in the requested time period
- * @author brianlam
- *
- */
-public class VanBooking {
-
-}

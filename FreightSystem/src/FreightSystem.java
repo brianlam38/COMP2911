@@ -8,13 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-// SUMMARY
-// Main idea is to implement A* with a variety of different "strategy patterns" / different heuristic functions.
-// 1. Build basic initial Heuristic (Euclidean distance Heuristic)
-// 2. Test the base A* algorithm
-// 3. Build a second improved Heuristic function (do some research on this after building base version)
-// 4. Test the improved A* algorithm
-
 // OUTPUT
 // n nodes expanded (number of nodes taken OFF the queue)
 // if soln exists
@@ -78,14 +71,12 @@ import java.util.*;
 
 
 public class FreightSystem {
-	
 	public static HashMap<String, Integer> unloadCost = new HashMap<String, Integer>();
 	public static HashMap<String, Integer> city = new HashMap<String, Integer>();
 	public static HashMap<Integer, String> cityStr = new HashMap<Integer, String>();
+	public static ArrayList<Job> jobList = new ArrayList<Job>();
 	public static GraphMatrix graph;
 	public static AStar algorithm;
-
-	private static int numCity = 0;
 	
 	/**
 	 * Take city string as key and return city/vertex number.
@@ -100,7 +91,6 @@ public class FreightSystem {
 	public static String getCityStr(int cityID) {
 		return cityStr.get(cityID);
 	}
-	
 	
 	/**
 	 * Take city string as key and return unload cost for city.
@@ -122,6 +112,7 @@ public class FreightSystem {
 	public static void main(String[] args) {
 		boolean graphExists = false;
 		boolean AStarExists = false;
+		int numCity = 0;
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new FileReader(args[0])); 
@@ -130,35 +121,16 @@ public class FreightSystem {
 				String[] input = line.split("\\s+");			
 				// Parses unloading cost and city strings
 				if (input[0].equals("Unloading")) {
-					System.out.println("----------------------- PARSE UNLOAD COST AND CITY STRINGS -----------------------");
+					System.out.println("----------------------------------------------------------- PARSE UNLOAD COST AND CITY STRINGS ");
 					int unload = Integer.parseInt(input[1]);
 					unloadCost.put(input[2], unload);
 					city.put(input[2], numCity);
 					cityStr.put(numCity, input[2]);
 					numCity++;
-					
-					// --- PRINT TESTS ------------------------------------------------------------------------------------
-					System.out.println("### CURRENT CITIES/UNLOADS KNOWN ###");
-					System.out.println("NUMBER OF CITIES:" + numCity);
-					// CITY H.M: Print key / value pairs
-					Set<String> keySet = city.keySet();
-					System.out.println("CITY KEYSET = " + keySet);
-					Collection<Integer> vSet = city.values();
-					System.out.println("CITY VALUESET = " + vSet);
-					// CITYSTR H.M: Print key / value pairs
-					Set<Integer> keyStr = cityStr.keySet();
-					System.out.println("CITYSTR KEYSET = " + keyStr);
-					Collection<String> citySet = cityStr.values();
-					System.out.println("CITYSTR VALUESET = " + citySet);
-					// UNLOAD H.M: Print key / value pairs
-					Collection<Integer> valueSet = unloadCost.values();
-					System.out.println(valueSet);
-					System.out.println("### ############################ ###");
-					// --- END TESTS ------------------------------------------------------------------------------------
 				}
 				// Create GraphMatrix object w/ matrix and Parses travel cost input into Matrix
 				if (input[0].equals("Cost")) {
-					System.out.println("----------------------- PARSE GRAPH EDGES AND WEIGHTS -----------------------");
+					System.out.println("----------------------------------------------------------- PARSE GRAPH EDGES AND WEIGHTS ");
 					Set<String> keySet = city.keySet();
 					System.out.println("CITY KEYSET = " + keySet);
 					
@@ -185,7 +157,7 @@ public class FreightSystem {
 				}
 				// Parses specific job strings
 				if (input[0].equals("Job")) {
-					System.out.println("----------------------- PARSE JOB REQUESTS -----------------------");
+					System.out.println("----------------------------------------------------------- PARSE JOB REQUESTS ");
 					// Create A* object and initialise prev/dist arrays
 					if (!AStarExists) {
 						algorithm = new AStar();
@@ -193,7 +165,40 @@ public class FreightSystem {
 						algorithm.setDist(numCity);
 						AStarExists = true;
 					}
-					// Add jobs
+					// Add jobs to joblist
+					Job job = new Job(getCityID(input[1]), getCityID(input[2]));
+					jobList.add(job);
+					System.out.println("JOBLIST = " + jobList);
+				}
+				// Process jobs
+				int numJobs = jobList.size();
+				int currCity = getCityID("Sydney");
+				while (!jobList.isEmpty()) {
+					for (int i = 0; i < numJobs; i++) {
+						Job j = jobList.get(i);
+						int start = j.source;
+						int goal	= j.goal;
+						jobList.remove(i);
+					}
+					
+					// HashMap<cityStart, cityGoal>
+					// perform A*(start)
+					// 		if 
+					
+					// perform A*(current step)
+					//		return 
+					//		if directPath to goal is found,
+					//			break
+					//			remove job from jobList
+					//		else
+					//			search for nearby goalStart vertex + go to vertex (towards goal)
+					// 
+					// perform A*(start) -> return current vertex
+					// perform A*(curr) -> return current vertex
+					// perform A*(curr) -> return current vertex
+					
+					// For each step, check if goal has been fulfilled
+
 				}
 			}
 			// Run A* algorithm
