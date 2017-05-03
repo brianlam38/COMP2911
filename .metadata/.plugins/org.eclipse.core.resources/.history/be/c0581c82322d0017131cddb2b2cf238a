@@ -170,10 +170,8 @@ public class FreightSystem {
 					jobList.add(job);
 					System.out.println("JOBLIST = " + jobList);
 					
-					/*Q - Why did I lose marks for having static methods??
-							A - Better way to access methods and attributes in VanRentalSystem was to create an instance of 
-							VanRentalSystem inside the main function (like VanRentalSystem v = new VanRentalSystem()) and then
-							you can call all methods using that instance. Please make sure you do this for asst2 with FreightSystem.*/
+					//Q - Why did I lose marks for having static methods??
+							A - Better way to access methods and attributes in VanRentalSystem was to create an instance of VanRentalSystem inside the main function (like VanRentalSystem v = new VanRentalSystem()) and then you can call all methods using that instance. Please make sure you do this for asst2 with FreightSystem.
 					
 				}
 				// Process jobs

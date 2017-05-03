@@ -1,0 +1,20 @@
+!!marktab       **  MARKER'S  ASSESSMENT  **
+
+                       Design ..  ..  ..  (3.0) 2.5
+
+                                               ^
+                                               + ============================================================== +
+                                               + UML/Design                                                     +
+                                               + - Careful of composition and aggregation difference (didn't    +
+                                               + penalise for this). Is VanBooking ever initialised outside of  +
+                                               + CamperVan? - if so, use aggregation instead.                   +
+                                               + - doesn't make sense to have aggregation between VRS and       +
+                                               + vanbooking/campervan when VanSystem is the one storing it.     +
+                                               + Especially in your code, the new campervans should have been   +
+                                               + best instantiated inside VanSystem                             +
+                                               + Coding style -                                                 +
+                                               + - Should not have static methods. Instead, make an instance    +
+                                               + of VanRentalSystem inside the main function and call methods   +
+                                               + off that instance.                                             +
+                                               + ============================================================== +
+                       Programming Style  (1.0) 0.5
