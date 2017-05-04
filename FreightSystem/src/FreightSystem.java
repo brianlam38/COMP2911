@@ -204,10 +204,10 @@ public class FreightSystem {
 					// perform A*(curr) -> return current vertex
 					
 					// For each step, check if goal has been fulfilled
-
+					
 				}
 			}
-			// Run A* algorithm
+			// Run A* algorithm (outside of while loop)
 			algorithm.aStar(city.get("Sydney"), numCity);
 		}
 		catch (FileNotFoundException e) {

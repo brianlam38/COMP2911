@@ -71,6 +71,54 @@ How A* works
 // IMPROVED A* HEURISTICS
 // Maybe pre-compute a sub-journey or something so we don't have to figure the whole path, but only sections of the path
 
+// JASON'S COMMENTS
+// With Djikstra's you can do this:
+// - Push everything (could be pushing the same node multiple times with different costs)
+// - When you pop, check if node has been VISITED.
+// - 		If visited, SKIP (don't push its neighbours)
+// - 		Else continue (push all neighbours without checking)
+
+// I am visiting STATES, not CITIES
+// - i.e. If you're in city A, with 5 jobs left
+// DIFF TO:
+// - If you're in city A, with 3 jobs left
+// You have to push in state objects
+
+// Just imagine that there's a city with:
+// - 0 jobs left
+// - 1 job left
+// - 2 jobs left
+
+// Minimum that I need to store in my state object
+// - Your current city (so you know where to go)
+// - The joblist (so you know when you're done)
+
+// Order the PQ by cost / weight
+// The aim is to reach the goal state with the minimum cost
+// Goal state = 0 jobs left
+
+// Same as doing normal shortest path, except now you have: Sydney1, Sydney2, Sydney3 etc.
+
+// HEURISTICS
+// As long as they are ADMISSABLE heuristics, it should be fine.
+// I.e. Never over-estimate the cost of going from S->X
+// Example:
+// - You have A B C
+// - A->B = 1
+// - B->C = 1
+// - C->A = 1
+// Your heuristic tells you:
+// - A->B = 2
+// - B->C = 2
+// - C->A = 10000
+// According to your heuristic, your algorithm will run the following way:
+// 1. Push B and C
+// 2. Pop B first (since C cost > B cost)
+// 3. Adds B->C weights
+// 4. Returns path and weight A->B->C which is INCORRECT
+
+
+
 
 
 

@@ -1,0 +1,18 @@
+
+//this is the class that gets run from Run
+public class Main {
+	public static void main(String[] args){
+		//invoke front end thats all, pretty sure
+		//since the front end invokes stuff in the back end
+		
+//		for now could put in stub gameboard to test the frontend comes up => 
+//		actually a gameboard full of wall should be the default screen that comes up
+//		and when start new game, the floor is like carved into it :O
+//		need help understanding where to check if gamestate is final and to call newGame
+
+		System.out.println("this is annoying to set up");
+		
+		Game g = new Game();
+		
+	}
+}
