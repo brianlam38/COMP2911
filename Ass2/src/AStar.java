@@ -4,10 +4,7 @@
  * Author: Brian Lam
  */
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class AStar {
 	
@@ -20,9 +17,7 @@ public class AStar {
 		
 		Takes in data from FreightSystem for use in the algorithm.
 	*/
-	public AStar(	HashMap<String, Integer> cities,
-		   				HashMap<String, HashMap<String, Integer>> edges,
-		   				HashSet<Job> jobs) {
+	public AStar(HashMap<String, Integer> cities, HashMap<String, HashMap<String, Integer>> edges, HashSet<Job> jobs) {
 		this.cities = cities;
 		this.edges = edges;
 		this.jobs = jobs;
@@ -39,8 +34,8 @@ public class AStar {
 	public void runAStar() {
 		HashMap<State, Boolean> visited = new HashMap<State, Boolean>();
 		PriorityQueue<Score> pq = new PriorityQueue<Score>();	// PQ with comparator Score
-		HashMap<State, Integer> gScore = new HashMap<State, Integer>(); //actualCost
-		HashMap<State, Integer> fScore = new HashMap<State, Integer>(); //estimatedCost
+		HashMap<State, Integer> gScore = new HashMap<State, Integer>(); // real costs
+		HashMap<State, Integer> fScore = new HashMap<State, Integer>(); // herustic cost
 		HashMap<State, State> cameFrom = new HashMap<State, State>();
 		HashMap<HashSet<Job>, Integer> heuristics = new HashMap<HashSet<Job>, Integer>();
 		
@@ -108,48 +103,52 @@ public class AStar {
 		*/
 
 		while (!pq.isEmpty()) {
-			Score scr = pq.poll();
+			
+			Score score = pq.poll();
 			count++;
-			State currState = scr.getState();
+			State currState = score.getState();
 			String currCity = currState.getCity();
-
+			
+			// Goal state has been reached, no jobs remaining! Woohoo
 			if (currState.getJobs().isEmpty()) {
-				System.out.println(count + " nodes expanded");
-				System.out.printf("cost = " + "%d" + "\n", gScore.get(currState));
-				reconstruct(init, currState, cameFrom);
+				printOptimalPath(count, gScore, init, currState, cameFrom);
 				break;
 			}
-
+			
+			// Skip visited
 			if (visited.get(currState) == null) {
 				visited.put(currState, true);
 			} else {
 				continue;
 			}
-
+			
+			// DO STUFF
 			HashSet<Job> currentJobList = currState.getJobs();
 			if (!heuristics.containsKey(currentJobList)) {
 				heuristics.put(currentJobList, calculateMinUnloadingCost(currentJobList));
 			}
+			// DO STUFF
 			Integer mHeuristic = heuristics.get(currentJobList);
 			for (Map.Entry<String, Integer> next : edges.get(currCity).entrySet()) {
 				String nextCity = next.getKey();
-				
+				// DO STUFF
 				Integer heuristic = mHeuristic;
 				HashSet<Job> nextJobList = new HashSet<Job>();
-				nextJobList = clonejobs(currentJobList);
+				nextJobList = copyJobsList(currentJobList);
 				if (nextJobList.remove(new Job(currCity, nextCity, edges.get(currCity).get(nextCity)))) {
 					// heuristic -= edges.get(currCity).get(nextCity);
 				}
-				
+				// DO STUFF
 				State nextState = new State(nextCity, nextJobList);
 				if (visited.containsKey(nextState)) {
 					continue;
 				}
-				
+				// DO STUFF
 				Integer actualCost = gScore.get(currState) + edges.get(currCity).get(nextCity);
 				if (nextJobList.size() != currentJobList.size()) {
 					actualCost += cities.get(nextCity);
 				}
+				// DO STUFF
 				cameFrom.put(nextState, currState);
 				gScore.put(nextState, actualCost);
 				Integer estimatedCost = actualCost + heuristic;
@@ -159,16 +158,26 @@ public class AStar {
 			}
 		}	
 	}
-
+	
+	/**
+	 * Clone a job list.
+	 * 
+	 * Used to store continuation of remaining jobs in each future state.
+	 */
 	@SuppressWarnings("unchecked")
-	private HashSet<Job> clonejobs(HashSet<Job> currentJobList) {
+	private HashSet<Job> copyJobsList(HashSet<Job> currentJobList) {
 		return (HashSet<Job>) currentJobList.clone();
 	}
 	
-	private static void reconstruct(State from, State to,
+	/**
+	 * Prints all the output.
+	 * 
+	 * Prints output for nodes expanded, total cost and sequence of empty trips or job trips.
+	 */
+	private static void printOptimalPath(int count, HashMap<State, Integer> realScore, State from, State to,
 		HashMap<State, State> path) {
-		State currState = to;			// Takes in a "TO" state
-		String result = "";					// Declare + init empty result
+		State currState = to;
+		String result = "";
 
 		// while curr state != from state
 		// 		if prevState jobSize != currState jobSize (state change)
@@ -180,6 +189,9 @@ public class AStar {
 		//		^ This concatenates the output, to make sure it prints from FIRST_JOB -> LAST_JOB
 		//
 		// print out the entire stored result
+		
+		System.out.println(count + " nodes expanded");
+		System.out.printf("cost = " + "%d" + "\n", realScore.get(currState));
 
 		while (!currState.equals(from)) {
 			String loaded = "Empty";
@@ -188,13 +200,13 @@ public class AStar {
 				loaded = "Job";
 			}
 			result = 	loaded
-						+ " from " + 
+						+ " " + 
 						prevState.getCity() +  
 						" to " + 
 						currState.getCity() + "\n" + result;
 			currState = prevState;
 		}
+		// Print entire concatenated string
 		System.out.println(result);
 	}
-
 }

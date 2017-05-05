@@ -1,30 +1,34 @@
-/*
-	SCORE CLASS: Used for comparator of PriorityQueue
-
-	Used for comparing each object in the PriorityQueue
-	@Params: AStarState (state object), Weight (total w so far in current state)
-	@Methods:
-	int getScore = returns score of state
-	int getState = returns the state object
-	int compareTo = used to re-order PQ lowest->highest
-	int hashCode = returns a hash number???
-	boolean equals = compares SCORE objects
+/**
+	SCORE CLASS
+	
+	Used as the PriorityQueue comparator, for comparing
+	States by their score in the AStar search algorithm.
 */
 public class Score implements Comparable<Score> {
+	
 	private Integer score;
 	private final State state;
-
-	public Score(State s, Integer scr) {
-		this.state = s;
-		this.score = scr;
+	
+	/**
+	 * Score constructor
+	 * @param state for comparison
+	 * @param score for comparison
+	 */
+	public Score(State state, Integer score) {
+		this.state = state;
+		this.score = score;
+	}
+	
+	/**
+	 * Get the current state o
+	 * @return
+	 */
+	public State getState() {
+		return state;
 	}
 
 	public int getScore() {
 		return score;
-	}
-
-	public State getState() {
-		return state;
 	}
 
 	// We want the lowest score to be the head of the PQ
