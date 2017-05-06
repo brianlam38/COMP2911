@@ -4,6 +4,13 @@
 	Used as the PriorityQueue comparator, for comparing
 	States by their score in the AStar search algorithm.
 */
+
+/**
+ * Score is a comparator class for use in AStar's Priority Queue.
+ * 
+ * It helps order the priority queue by a certain State's total estimated cost.
+ * States with lower total estimated cost will therefore be expanded first.
+ */
 public class Score implements Comparable<Score> {
 	
 	private Integer score;
@@ -20,18 +27,24 @@ public class Score implements Comparable<Score> {
 	}
 	
 	/**
-	 * Get the current state o
+	 * Get the current state object
 	 * @return
 	 */
 	public State getState() {
 		return state;
 	}
 
+	/**
+	 * Get the current cost
+	 */
 	public int getScore() {
 		return score;
 	}
 
-	// We want the lowest score to be the head of the PQ
+	/**
+	 * Override default comparison method so that the
+	 * lowest cost state will be at the top of the PQ.
+	 */
 	@Override
 	public int compareTo(Score s) {
 		if (score > s.getScore()) {

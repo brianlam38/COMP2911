@@ -1,0 +1,11 @@
+/**
+ * COMP2911 FreightSystem Assignment 2
+ * Date: April 2017
+ * Author: Brian Lam
+ */
+
+import java.util.*;
+
+public class StratSelect {
+	
+}

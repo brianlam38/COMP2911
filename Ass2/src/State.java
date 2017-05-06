@@ -7,9 +7,9 @@
 import java.util.HashSet;
 
 /**
-	STATE CLASS
+	State class.
 
-	Represents different states, i.e. city / jobsList
+	Represents different states, i.e. city / jobsList.
 */
 public class State {
 	

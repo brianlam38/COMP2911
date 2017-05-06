@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
+/**
+ * FreightSystem reads in input, parses it and then executes commands to the rest of the system.
+ */
 public class FreightSystem {
 
 	public HashMap<String, Integer> cities;
