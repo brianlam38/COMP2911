@@ -36,20 +36,17 @@ public class FreightSystem {
 				String[] input = line.split("\\s+");			
 				// Parses unload cost and creates edge
 				if (input[0].equals("Unloading")) {
-					System.out.println("----------------------------------------------------------- PARSE UNLOAD COST ");
 					sys.cities.put(input[2], Integer.parseInt(input[1]));		// insert HM<city, unloadCost>
 					sys.edges.put(input[2], new HashMap<String, Integer>());	// insert HM<city, HM<city, weightCost>>
 				}
 				// Parse edge weight input
 				if (input[0].equals("Cost")) {
-					System.out.println("----------------------------------------------------------- PARSE EDGE WEIGHTS ");
 					// Grab two key cities and add in edge weight
 					sys.edges.get(input[2]).put(input[3], Integer.parseInt(input[1]));
 					sys.edges.get(input[3]).put(input[2], Integer.parseInt(input[1]));
 				}
 				// Parses job input
 				if (input[0].equals("Job")) {
-					System.out.println("----------------------------------------------------------- PARSE JOB REQUESTS ");
 					Job job = new Job(input[1], input[2], sys.edges.get(input[1]).get(input[2]));
 					sys.jobList.add(job);
 				}
