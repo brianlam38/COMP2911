@@ -28,7 +28,7 @@ public class AStar {
 	public AStar(HashMap<String, Integer> cities, HashMap<String, HashMap<String, Integer>> edges, HashSet<Job> jobs) {
 		this.pq = new PriorityQueue<Score>();
 		this.gCost = new HashMap<State, Integer>(); 	// real costs
-		this.fCost = new HashMap<State, Integer>(); 	// total costs
+		this.fCost = new HashMap<State, Integer>(); 	// heuristic cost
 		this.visited = new HashMap<State, Boolean>();
 		this.cameFrom = new HashMap<State, State>();	// tracks path
 		this.heuristics = new HashMap<HashSet<Job>, Integer>();
@@ -38,7 +38,7 @@ public class AStar {
 	}
 	
 	/**
-	 * Calculate job list cost.
+	 * 
 	 * 
 	 * Get total cost of remaining jobs in the current state's job list.
 	 */
@@ -155,20 +155,20 @@ public class AStar {
 				if (nextJobList.remove(new Job(currCity, nextCity, edges.get(currCity).get(nextCity)))) {
 					// heuristic -= edges.get(currCity).get(nextCity);
 				}
-				// Check if neighbour has been visited
+				// DO STUFF
 				State nextState = new State(nextCity, nextJobList);
 				if (visited.containsKey(nextState)) {
 					continue;
 				}
-				// Add unload cost to actual cost
-				int actualCost = gCost.get(currState) + edges.get(currCity).get(nextCity);
+				// DO STUFF
+				Integer actualCost = gCost.get(currState) + edges.get(currCity).get(nextCity);
 				if (nextJobList.size() != currentJobList.size()) {
 					actualCost += cities.get(nextCity);
 				}
-				// Update the new state with cost and path information then add into PQ
+				// DO STUFF
 				cameFrom.put(nextState, currState);
 				gCost.put(nextState, actualCost);
-				int estimatedCost = actualCost + heuristic;
+				Integer estimatedCost = actualCost + heuristic;
 				fCost.put(nextState, estimatedCost);
 				Score sc = new Score(nextState, estimatedCost);
 				pq.add(sc);

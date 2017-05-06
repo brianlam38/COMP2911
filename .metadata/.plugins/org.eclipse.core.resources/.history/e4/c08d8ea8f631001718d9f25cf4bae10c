@@ -28,7 +28,7 @@ public class AStar {
 	public AStar(HashMap<String, Integer> cities, HashMap<String, HashMap<String, Integer>> edges, HashSet<Job> jobs) {
 		this.pq = new PriorityQueue<Score>();
 		this.gCost = new HashMap<State, Integer>(); 	// real costs
-		this.fCost = new HashMap<State, Integer>(); 	// total costs
+		this.fCost = new HashMap<State, Integer>(); 	// heuristic cost
 		this.visited = new HashMap<State, Boolean>();
 		this.cameFrom = new HashMap<State, State>();	// tracks path
 		this.heuristics = new HashMap<HashSet<Job>, Integer>();
@@ -160,7 +160,7 @@ public class AStar {
 				if (visited.containsKey(nextState)) {
 					continue;
 				}
-				// Add unload cost to actual cost
+				// DO STUFF
 				int actualCost = gCost.get(currState) + edges.get(currCity).get(nextCity);
 				if (nextJobList.size() != currentJobList.size()) {
 					actualCost += cities.get(nextCity);

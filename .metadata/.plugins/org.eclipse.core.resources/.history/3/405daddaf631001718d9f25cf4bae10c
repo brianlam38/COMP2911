@@ -21,7 +21,7 @@ public class Job {
 	 * @param to city #2
 	 * @param cost of traveling between cities
 	 */
-	public Job(String from, String to, int cost) {
+	public Job(String from, String to, Integer cost) {
 		this.from = from;
 		this.to = to;
 		this.cost = cost;
@@ -31,7 +31,7 @@ public class Job {
 	 * Grabbing cost of the job
 	 * @return job cost.
 	 */
-	public int getCost() {
+	public Integer getCost() {
 		return cost;
 	}
 	

@@ -160,7 +160,7 @@ public class AStar {
 				if (visited.containsKey(nextState)) {
 					continue;
 				}
-				// Add unload cost to actual cost
+				// DO STUFF
 				int actualCost = gCost.get(currState) + edges.get(currCity).get(nextCity);
 				if (nextJobList.size() != currentJobList.size()) {
 					actualCost += cities.get(nextCity);
