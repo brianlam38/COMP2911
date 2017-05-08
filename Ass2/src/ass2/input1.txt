@@ -1,0 +1,14 @@
+Unloading 0 Sydney
+Unloading 0 SilvermoonCity
+Unloading 0 Stormwind
+Unloading 0 Orgrimmar
+Unloading 0 ThunderBluff
+Cost 100 Sydney SilvermoonCity
+Cost 731 Stormwind Orgimmar
+Cost 721 Orgrimmar SilvlermoonCity
+Cost 108 ThunderBluff Stormwind
+Cost 129 ThunderBluff SilvermoonCity
+Job Sydney SilvermoonCity
+Job SilvermoonCity Stormwind
+Job Stormwind Orgrimmar
+Job Stormwind ThunderBluff

@@ -1,0 +1,29 @@
+Unloading 0 Sydney
+Unloading 0 Braavos
+Unloading 0 Kingslanding
+Unloading 0 Volantis
+Unloading 0 Oldtown
+Unloading 0 Valyria
+Unloading 0 Pentos
+Cost 25 Sydney Braavos
+Cost 35 Sydney Kingslanding
+Cost 20 Braavos Oldtown
+Cost 15 Oldtown Pentos
+Cost 15 Pentos Volantis
+Cost 20 Volantis Kingslanding
+Cost 35 Valyria Sydney
+Cost 25 Valyria Braavos
+Cost 15 Valyria Kingslanding
+Cost 35 Valyria Volantis
+Cost 55 Valyria Oldtown
+Job Sydney Kingslanding
+Job Sydney Braavos
+Job Kingslanding Volantis
+Job Braavos Oldtown
+Job Volantis Pentos
+Job Oldtown Pentos
+Job Valyria Volantis
+Job Valyria Oldtown
+Job Valyria Sydney
+Job Valyria Braavos
+Job Valyria Kingslanding

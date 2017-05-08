@@ -1,0 +1,42 @@
+/**
+ * COMP2911 Project Assignment 3
+ * Date: May 2017
+ * @Author: Brian Lam and Thanh Pham
+ */
+
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
+public class Renderer {
+	Image title;
+	double GRID_MARGIN;
+	int GRID_PRERENDER_X;
+	int GRID_PRERENDER_Y;
+	Color BG_COLOR;
+	double MENU_MARGIN;
+	Color MENU_DEFAULT_FILL;
+	Color MENU_DEFAULT_CONTENT;
+	Color MENU_SELECTED_FILL;
+	Color MENU_SELECTED_CONTENT;
+	Boolean CLEAN_FRAME;
+	
+	Font stringFont;
+	Font selectedFont;
+	Font inGameFont;
+	Font gameOverFont;
+	Image mazeBackground;
+	BufferStrategy bufferStrategy;
+	Graphics frameGraphics;
+	int resX;
+	int resY;
+	
+	public Renderer() {
+		// do stuff with constructor
+	}
+	
+	public void setResolution(int x, int y) {
+		resX = x;
+		resY = y;
+	}
+
+}

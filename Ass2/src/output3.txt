@@ -1,0 +1,24 @@
+15457 nodes expanded
+cost = 515
+Job Sydney to Braavos
+Job Braavos to Oldtown
+Empty Oldtown to Braavos
+Empty Braavos to Sydney
+Job Sydney to Kingslanding
+Job Kingslanding to Volantis
+Empty Volantis to Kingslanding
+Empty Kingslanding to Valyria
+Job Valyria to Volantis
+Job Volantis to Pentos
+Empty Pentos to Oldtown
+Job Oldtown to Pentos
+Empty Pentos to Volantis
+Empty Volantis to Kingslanding
+Empty Kingslanding to Valyria
+Job Valyria to Braavos
+Empty Braavos to Valyria
+Job Valyria to Kingslanding
+Empty Kingslanding to Valyria
+Job Valyria to Sydney
+Empty Sydney to Valyria
+Job Valyria to Oldtown
