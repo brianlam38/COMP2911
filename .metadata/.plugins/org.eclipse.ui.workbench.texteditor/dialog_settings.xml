@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="addEdge" key="selection"/>
+		<item value="render(" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="addedge"/>
-			<item value="graph"/>
-			<item value="rejecte"/>
-			<item value="rejected"/>
-			<item value="bookallvans"/>
-			<item value="curr start"/>
-			<item value="booking"/>
-			<item value="println"/>
+			<item value="render("/>
+			<item value="gettransformedgraphics"/>
+			<item value="gettransform"/>
+			<item value="drawinstruction"/>
+			<item value="drawinstru"/>
+			<item value="getdrawgraphics"/>
+			<item value="render"/>
+			<item value="getTransformed"/>
 		</list>
 		<list key="replacehistory">
+			<item value="State"/>
 			<item value=""/>
 			<item value="vanList"/>
 		</list>
