@@ -21,9 +21,6 @@ public class ArrayListSet<E> implements Set<E> { // makes only arraylistset iter
 	
 	/**
 	 * METHOD DESCRIPTION
-	 * @param
-	 * @pre
-	 * @post
 	 */
 	public ArrayListSet(ArrayListSet<E> se) {
 		// copy constructor?
@@ -32,12 +29,6 @@ public class ArrayListSet<E> implements Set<E> { // makes only arraylistset iter
 		elements = new ArrayList<E>(se.elements); // duplicates the arraylist
 	}
  
-	/**
-	 * METHOD DESCRIPTION
-	 * @param
-	 * @pre
-	 * @post
-	 */
 	public boolean equals (Object o) { // can return true of any type of set
 		if (o instanceof Set<?>) {
 			Set<?> se = (Set<?>) o;
@@ -52,6 +43,7 @@ public class ArrayListSet<E> implements Set<E> { // makes only arraylistset iter
 	}
 	
 	// you'll want to add more methods like 'adding to a set' 
+
 
 	@Override
 	public Set<E> union(Set<E> other) {

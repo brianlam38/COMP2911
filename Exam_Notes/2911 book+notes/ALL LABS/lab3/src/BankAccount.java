@@ -10,6 +10,12 @@ public class BankAccount {
 	private float withdrawalLeft;
 	private Calendar lastWithdrawal; 
 	
+	  /**
+	   * Constructor for the BankAccount class
+	   * @pre balance, withdrawLeft are non-negative.
+	   * @post withdrawal is set to limit amount,
+	   * 	   lastWithdrawal is set to current time and date of object being created
+	   */
 	public BankAccount() {
 		this.balance = 0;
 		this.withdrawalLeft = 800;
@@ -19,8 +25,8 @@ public class BankAccount {
 	/**
 	 * Method to deposit money into the bank account
 	 * @param amount the amount to be deposited
-	 * @pre amount > 0
-	 * @post balance = balance + amount
+	 * @pre   		 amount > 0
+	 * @post 		 balance = balance + amount
 	 */
 	public void deposit(float amount) {
 		balance += amount; 
@@ -29,7 +35,7 @@ public class BankAccount {
 	/**
 	 * Method to withdraw money from the bank account
 	 * @param amount the amount to be withdrawn
-	 * @pre amount > 0
+	 * @pre amount > 0 and balance >= amount
 	 * @post balance = balance - amount
 	 */
 	public boolean withdraw(float amount) {
@@ -41,7 +47,7 @@ public class BankAccount {
 		if (withdrawalLeft - amount >= 0) {
 			balance -= amount; 
 			withdrawalLeft -= amount; 
-			lastWithdrawal = currDate;
+			setLastWithdrawal(currDate);
 			return true;
 		} else {
 			return false;
@@ -68,13 +74,14 @@ public class BankAccount {
 	 * Method to get the date that was the last withdraw
 	 * @return lastWithdrawal as a Calendar object
 	 */
-	public Calendar lastWithdrawal() {
+	public Calendar getLastWithdrawal() {
 		return lastWithdrawal;
 	}
 	
 	/**
 	 * Method to set the last withdrawal date
 	 * @param date to be used as last withdrawal date
+	 * @pre lastWithdrawal is older than date
 	 */
 	public void setLastWithdrawal(Calendar date) {
 		lastWithdrawal = date;

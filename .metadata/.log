@@ -6329,3 +6329,9 @@ Caused by: org.eclipse.core.internal.resources.ResourceException: A resource exi
 
 !ENTRY org.eclipse.jface.text 2 0 2017-06-11 15:41:44.473
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-06-11 18:49:59.196
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-06-11 18:49:59.211
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
