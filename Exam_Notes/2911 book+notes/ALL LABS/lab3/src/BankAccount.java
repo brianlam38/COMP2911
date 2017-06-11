@@ -1,33 +1,38 @@
 import java.util.Calendar;
 
-
+/**
+ * BankAccount handles the depositing and withdrawing of funds.
+ * @invariant balance >= 0
+ */
 public class BankAccount {
 
-	private int balance;
-	private int withdrawalLeft;
+	private float balance;
+	private float withdrawalLeft;
 	private Calendar lastWithdrawal; 
 	
 	public BankAccount() {
-		balance = 0;
-		withdrawalLeft = 800;
-		lastWithdrawal = Calendar.getInstance();
+		this.balance = 0;
+		this.withdrawalLeft = 800;
+		this.lastWithdrawal = Calendar.getInstance();
 	}
 	
 	/**
 	 * Method to deposit money into the bank account
 	 * @param amount the amount to be deposited
-	 * @precondition amount > 0
+	 * @pre amount > 0
+	 * @post balance = balance + amount
 	 */
-	public void deposit(int amount) {
+	public void deposit(float amount) {
 		balance += amount; 
 	}
 	
 	/**
 	 * Method to withdraw money from the bank account
 	 * @param amount the amount to be withdrawn
-	 * @precondition amount > 0
+	 * @pre amount > 0
+	 * @post balance = balance - amount
 	 */
-	public boolean withdraw(int amount) {
+	public boolean withdraw(float amount) {
 		Calendar currDate = Calendar.getInstance();
 		// if it is a new day, reset the withdrawal amount to 800
 		if (currDate.get(Calendar.DATE) != lastWithdrawal.get(Calendar.DATE)) {
@@ -47,15 +52,15 @@ public class BankAccount {
 	 * Method to get the current balance of bank account
 	 * @return balance as an int
 	 */
-	public int getBalance() {
+	public float getBalance() {
 		return balance; 
 	}
 	
 	/**
 	 * Method to get the amount of withdrawal left in the bank account for the day
-	 * @return withdrawalLeft as an int
+	 * @return withdrawalLeft as a float
 	 */
-	public int withdrawalLeft() {
+	public float getWithdrawalLeft() {
 		return withdrawalLeft;
 	}
 	

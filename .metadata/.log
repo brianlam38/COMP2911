@@ -6323,3 +6323,9 @@ Caused by: org.eclipse.core.internal.resources.ResourceException: A resource exi
 	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.createOrImportProject(SmartImportJob.java:557)
 	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:505)
 	... 2 more
+
+!ENTRY org.eclipse.jface.text 2 0 2017-06-11 15:41:44.463
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-06-11 15:41:44.473
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
