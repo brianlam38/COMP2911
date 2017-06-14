@@ -1,0 +1,117 @@
+package lab5;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+/**
+ * CLASS DESCRIPTION
+ * @invariant
+ */
+public class ArrayListSet<E> implements Set<E> {
+	
+	private ArrayList<E> array;
+	
+	/**
+	 * CONSTRUCTOR DESCRIPTION
+	 */
+	public ArrayListSet() {
+		this.array = new ArrayList<E>();
+	}
+	
+	/**
+	 * OPERATIONS ON SET MEMBERS
+	 */
+	public void addElement(E e) {
+		if (!this.has(e)) {
+			this.array.add(e);
+		}
+	}
+	public void removeElement(E e) {
+		if (this.has(e)) {
+			this.array.remove(e);
+		}
+	}
+	public boolean has(E e) {
+		if (this.array.contains(e)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Union of two sets
+	 * @param other is the second set to join with
+	 * @return joint, a new set containing both sets
+	 */
+	// Union two sets -> Return Set<E> joint
+	public Set<E> union(Set<E> other) {
+		ArrayListSet<E> joint = new ArrayListSet<E>();
+		// add in current array elements
+		for (E e: this.array) {
+			joint.addElement(e);
+		}
+		// add in second array elements, skip duplicates
+		for (E e : other) {
+			if (!joint.has(e)) {
+				joint.addElement(e);
+			}
+		}
+		return joint;
+ 	}
+	
+	/**
+	 * Intersectio  of two sets
+	 * @param other is the second set to join with
+	 * @return joint, a new set containing both sets
+	 */
+	// Intersection of two sets -> Return Set<E> intersect
+	public Set<E> intersection(Set<E> other) {
+		ArrayListSet<E> intersect = new ArrayListSet<E>();
+		for (E e: this.array) {
+			if (other.has(e)) {
+				intersect.addElement(e);
+			}
+		}
+		return intersect;
+	}
+	
+	public boolean isSubset(Set<E> other) {
+		// iterate over array, test if each elt exists in array.
+		for (E e : this.array) {
+			if (!other.has(e)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean equals (Object o) { // can return true of any type of set
+		if (o instanceof Set<?>) {
+			Set<?> se = (Set<?>) o;
+			// continue on to use double equals to compare items
+			// eg for iterator 
+			for (Object item : se) {  // compare all items in se to see if it in current set
+				// equal if same items and same size
+				array.contains(item); 
+			}
+		}
+		return false;
+	}
+	
+	public boolean equals(Object other){
+		//Can be done more effectively by sorting each array and then iterating a single time.
+//Or copy each array then remove the same element from each array until they are either both empty or not.
+		if (other == null) return false;		   // other is empty
+		if (!(other instanceof Set)) return false; // other is not a Set
+
+		Set<?> s = (Set<?>) other;
+		for (Object e: s) {
+			if (!this.has(e)) return false;
+		}
+		for (Object e: this) {
+			if (!this.has(e)) return false;
+		}
+		return true;
+	}
+}

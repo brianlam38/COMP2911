@@ -47,7 +47,7 @@ public class BankAccount {
 		if (withdrawalLeft - amount >= 0) {
 			balance -= amount; 
 			withdrawalLeft -= amount; 
-			setLastWithdrawal(currDate);
+			lastWithdrawal = curr;
 			return true;
 		} else {
 			return false;
@@ -56,7 +56,7 @@ public class BankAccount {
 	
 	/**
 	 * Method to get the current balance of bank account
-	 * @return balance as an int
+	 * @return balance as a float
 	 */
 	public float getBalance() {
 		return balance; 
@@ -76,14 +76,5 @@ public class BankAccount {
 	 */
 	public Calendar getLastWithdrawal() {
 		return lastWithdrawal;
-	}
-	
-	/**
-	 * Method to set the last withdrawal date
-	 * @param date to be used as last withdrawal date
-	 * @pre lastWithdrawal is older than date
-	 */
-	public void setLastWithdrawal(Calendar date) {
-		lastWithdrawal = date;
 	}
 }
