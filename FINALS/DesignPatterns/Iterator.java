@@ -24,7 +24,7 @@ public interface Container {
  * 
  * Example: A collection of books, using an iterator to iterate through the collection
  * Usage: A separate class with a main to do operations.
- * E.g. Iterator it = bookCollection.iterator();
+ * E.g. Iterator it = BookCollection.createIterator();
  *      while (it.hasNext()) {
  *      	Object book = it.next();
  *      	print(element);
@@ -34,7 +34,8 @@ public interface Container {
 public class BookCollection implements Container {
 	private String titles[] = {"Design Patterns", "1", "2", "3", "4"};
 	
-	public Iterator createIterator() {
+	@Override
+	public Iterator getIterator() {
 		BookIterator result = new BookIterator();
 		return result;
 	}
@@ -42,6 +43,7 @@ public class BookCollection implements Container {
 	public class BookIterator implements Iterator {
 		private int index;
 		
+		@Override
 		public boolean hasNext() {
 			if (index < titles.length) {
 				return true;
@@ -49,6 +51,8 @@ public class BookCollection implements Container {
 				return false;
 			}
 		}
+		
+		@Override
 		public Object next() {
 			if (this.hasNext()) {
 				return titles[index++];
