@@ -3,7 +3,7 @@
  **************************************************************/
 
 /**
- * ITERATOR INTERFACE
+ * ITERATOR INTERFACE - Narrates the navigation method
  */
 public interface Iterator {
 	public boolean hasNext();
@@ -11,109 +11,50 @@ public interface Iterator {
 }
 
 /**
- * CONTAINER INTERFACE
+ * CONTAINER INTERFACE - Runs the Iterator interface
  *
  */
-
+public interface Container {
+	public Iterator getIterator();
+}
 
 /**
- * COMPOSITE OBJECT IMPLEMENTATION
+ * CONTAINER CONCRETE CLASS - Implements the Container
+ * ITERATOR CONCRETE NESTED CLASS - Implements the Iterator interface
+ * 
+ * Example: A collection of books, using an iterator to iterate through the collection
+ * Usage: A separate class with a main to do operations.
+ * E.g. Iterator it = bookCollection.iterator();
+ *      while (it.hasNext()) {
+ *      	Object book = it.next();
+ *      	print(element);
+ *      {
  */
-public class Assembly implements Component {
-	private String name;
-	private int price; 
-	private ArrayList<Component> array;
-
-	public Assembly(String name) {
-		this.name = name;
-		this.array = new ArrayList<Component>(); 
+// A collection of books and it uses an iterator to iterate through the collection.
+public class BookCollection implements Container {
+	private String titles[] = {"Design Patterns", "1", "2", "3", "4"};
+	
+	public Iterator createIterator() {
+		BookIterator result = new BookIterator();
+		return result;
 	}
 	
-	// Add a new component to the list
-	public void addComponent(Component c) {
-		array.add(c);
-	}
-	// Remove component from the list
-	public void removeComponent(Component c) {
-		array.remove(c);
-	}
-	// Return cost of all the items
-	public int getCost() {
-		price = 0;
-		Iterator<Component> iterator = array.iterator(); 
-		while (iterator.hasNext()) {
-			price += iterator.next().getCost(); 
+	public class BookIterator implements Iterator {
+		private int index;
+		
+		public boolean hasNext() {
+			if (index < titles.length) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-		return price; 
-	}
-	// Return name of Composite
-	public String getName() {
-		return name; 
-	}
-}
-
-/**
- * LEAF OBJECT IMPLEMENTATION
- */
-public class Item implements Component {
-	private String name;
-	private int price; 
-	
-	public Item(String name, int price) {
-		this.name = name;
-		this.price = price;
-	}
-	// Return price of Leaf
-	@Override
-	public int getCost() {
-		return price; 
-	}
-	// Return name of Leaf
-	public String getName() {
-		return name; 
+		public Object next() {
+			if (this.hasNext()) {
+				return titles[index++];
+			} else {
+				return null;
+			}
+		}
 	}
 }
-
-/**************************************************************
- *                  + DECORATOR DESIGN PATTERN				  *
- **************************************************************/
-
-/**
- * DECORATOR SUPER CLASS - Decorates Components
- */
-public abstract class ComponentDecorator implements Component {
-	private Component decoratedComponent; 
-	
-	// Constructor for decorated component
-	public ComponentDecorator(Component c) {
-		this.decoratedComponent = c; 
-	}
-	// Return cost of decorated component
-	public int getCost() {
-		return decoratedComponent.getCost(); 
-	}
-}
-
-/**
- * "DIFFERENT DECORATORS"
- * E.g. 50% off, 25% off, 10% off
- */
-public class halfOffDecorator extends ComponentDecorator {
-	// Constructor for discounted
-	public halfOffDecorator(Component c) {
-		super(c);
-	}
-	// Get cost of decorated component
-	@Override
-	public int getCost() {
-		return applyDiscount(super.getCost());
-	}
-	// Apply 50% discount decoration to component
-	private int applyDiscount(int cost) { 
-		return cost/2; 
-	}
-}
-
-
-
-
