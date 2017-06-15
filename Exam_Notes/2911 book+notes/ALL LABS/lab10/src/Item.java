@@ -1,4 +1,7 @@
-
+/**
+ *  Item = Leaf Object
+ *  E.g. RAM, PSU, Graphics Card, Fan
+ */
 public class Item implements Component {
 
 	private String name;
