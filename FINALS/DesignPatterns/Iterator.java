@@ -17,33 +17,25 @@ public interface Iterator {
  *
  */
 public interface Container {
-	public Iterator getIterator();
+	public Iterator createIterator();
 }
 
 /**
  * CONTAINER CONCRETE CLASS - Implements the Container
  * ITERATOR CONCRETE NESTED CLASS - Implements the Iterator interface
- * 
- * Example: A collection of books, using an iterator to iterate through the collection
- * Usage: A separate class with a main to do operations.
- * E.g. Iterator it = BookCollection.createIterator();
- *      while (it.hasNext()) {
- *      	Object book = it.next();
- *      	print(element);
- *      {
  */
 // A collection of books and it uses an iterator to iterate through the collection.
 public class BookCollection implements Container {
 	private String titles[] = {"Design Patterns", "1", "2", "3", "4"};
 	
 	@Override
-	public Iterator getIterator() {
+	public Iterator createIterator() {
 		BookIterator result = new BookIterator();
 		return result;
 	}
 	
 	public class BookIterator implements Iterator {
-		private int index;
+		private int index = 0;
 		
 		@Override
 		public boolean hasNext() {
@@ -67,8 +59,8 @@ public class BookCollection implements Container {
 
 
 * Iterator Usage: A separate class with a main to do operations.
-* E.g. Iterator it = BookCollection.createIterator();
 *
+*      Iterator it = BookCollection.createIterator();
 *      while (it.hasNext()) {
 *      		Object book = it.next();
 *      		print(element);

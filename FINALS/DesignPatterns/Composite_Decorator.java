@@ -24,6 +24,7 @@ public class Assembly implements Component {
 	 */
 	public Assembly(String name) {
 		this.name = name;
+		this.totalPrice = 0;
 		this.array = new ArrayList<Component>(); 
 	}
 	
@@ -31,7 +32,7 @@ public class Assembly implements Component {
 	 * Method adds a component to the array
 	 * @post component exists in the array
 	 */
-	public void addComponent(Component c) {
+	public void addComp(Component c) {
 		array.add(c);
 	}
 	
@@ -40,7 +41,7 @@ public class Assembly implements Component {
 	 * @pre component exists
 	 * @post component is not present in array
 	 */
-	public void removeComponent(Component c) {
+	public void removeComps(Component c) {
 		array.remove(c);
 	}
 	
@@ -107,7 +108,7 @@ public class Item implements Component {
 /**
  * DECORATOR SUPER CLASS - Decorates Components
  */
-public abstract class ComponentDecorator implements Component {
+public class ComponentDecorator implements Component {
 	private Component decoratedComponent; 
 	
 	// Constructor for decorated component
@@ -117,6 +118,10 @@ public abstract class ComponentDecorator implements Component {
 	// Return cost of decorated component
 	public int getCost() {
 		return decoratedComponent.getCost(); 
+	}
+	// Return name of decorated component
+	public String getName() {
+		return decoratedComponent.getName();
 	}
 }
 

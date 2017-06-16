@@ -7,8 +7,8 @@
 // can be output as Binary or Hex.
 
 /**
- * SUBJECT - Attach / Detach observer operations.
- *           Maintains state and notifies observers of state changes.
+ * SUBJECT - Attach / Detach observer objects
+ *           Maintains state and notifies list of observers of state changes.
  */
 public class Subject {
 	private List<Observer> observerList = new ArrayList<Observer>();
@@ -34,11 +34,21 @@ public class Subject {
 	
 	/**
 	 * Method to add observer object to observer list
-	 * @pre
+	 * @post observer is now in list
 	 */
 	public void attach(Observer obs) {
 		observerList.add(obs);
 	}
+	
+	/**
+	 * Method to remove observer object to observer list
+	 * @pre observer exists in list
+	 * @post observer is removed from list
+	 */
+	public void detach(Observer obs) {
+		observerList.remove(obs);
+	}
+	
 	/**
 	 * Method to notify observers
 	 * @pre size of observer list > 0
@@ -55,13 +65,13 @@ public class Subject {
  * ABSTRACT OBSERVER   - Defines the operations to be used
  * 						 to notify this observer object.
  */
-public abstract class Observer {
-	protected Subject subject;
+public class Observer {
+	private Subject subject;
 	public abstract void update();
 }
 
 /**
- * CONCRETE OBSERVER - Concrete implementaton of observer object.
+ * CONCRETE OBSERVER - Concrete implementaton of observer interface
  * 
  * Can be Binary, Hex or any other observer base
  */
@@ -70,7 +80,7 @@ public class BinaryObserver extends Observer {
 	/**
 	 * BinaryObserver Constructor
 	 * @param s is the subject class
-	 * @post BinaryObserver object is added to Observer list
+	 * @post this observer object is added to observer
 	 */
 	public BinaryObserver(Subject s) {
 		this.subject = s;
@@ -81,8 +91,8 @@ public class BinaryObserver extends Observer {
 	 * @post updated the observer
 	 */
 	@Override
-	public void update() {
-		print(BinaryString);
+	public int update() {
+		return subject.getState();
 	}
 }
 
