@@ -6,41 +6,61 @@
  * COMPONENT INTERFACE
  */
 public interface Component {
-	public int getCost(); 
-	// include other possible operations
+	public int getCost();
+	public String getName(); 
 }
 
 /**
  * COMPOSITE OBJECT IMPLEMENTATION
+ * @invariant ???
  */
 public class Assembly implements Component {
 	private String name;
-	private int price; 
+	private int totalPrice; 
 	private ArrayList<Component> array;
 
+	/**
+	 * Composite constructor
+	 */
 	public Assembly(String name) {
 		this.name = name;
 		this.array = new ArrayList<Component>(); 
 	}
 	
-	// Add a new component to the list
+	/**
+	 * Method adds a component to the array
+	 * @post component exists in the array
+	 */
 	public void addComponent(Component c) {
 		array.add(c);
 	}
-	// Remove component from the list
+	
+	/**
+	 * Method removes a component from the array
+	 * @pre component exists
+	 * @post component is not present in array
+	 */
 	public void removeComponent(Component c) {
 		array.remove(c);
 	}
-	// Return cost of all the items
+	
+	/**
+	 * Method returns total cost of all components in the list
+	 * @pre array != null
+	 * @post totalPrice is updated
+	 * @return totalPrice as an int
+	 */
 	public int getCost() {
-		price = 0;
-		Iterator<Component> iterator = array.iterator(); 
-		while (iterator.hasNext()) {
-			price += iterator.next().getCost(); 
+		totalPrice = 0;
+		for (Component c : array) {
+			totalPrice += c.getCost();
 		}
-		return price; 
+		return totalPrice; 
 	}
-	// Return name of Composite
+	/**
+	 * Method returns the name of this Composite object
+	 * @return name of composite object
+	 */
 	public String getName() {
 		return name; 
 	}
@@ -48,21 +68,33 @@ public class Assembly implements Component {
 
 /**
  * LEAF OBJECT IMPLEMENTATION
+ * @invariant ???
  */
 public class Item implements Component {
 	private String name;
 	private int price; 
 	
+	/**
+	 * Leaf constructor
+	 */
 	public Item(String name, int price) {
 		this.name = name;
 		this.price = price;
 	}
-	// Return price of Leaf
+
+	/**
+	 * Method to retrieve cost of leaf item
+	 * @return price of the leaf item as an int
+	 */
 	@Override
 	public int getCost() {
 		return price; 
 	}
-	// Return name of Leaf
+	
+	/**
+	 * Method to retrieve name of leaf itme
+	 * @return name of the leaf item as a String
+	 */
 	public String getName() {
 		return name; 
 	}

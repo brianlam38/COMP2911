@@ -2,6 +2,8 @@
  *                   ITERATOR DESIGN PATTERN				  *
  **************************************************************/
 
+// Example: A collection of books, using an iterator to iterate through the collection
+
 /**
  * ITERATOR INTERFACE - Narrates the navigation method
  */
@@ -62,3 +64,13 @@ public class BookCollection implements Container {
 		}
 	}
 }
+
+
+* Iterator Usage: A separate class with a main to do operations.
+* E.g. Iterator it = BookCollection.createIterator();
+*
+*      while (it.hasNext()) {
+*      		Object book = it.next();
+*      		print(element);
+*      {
+*/

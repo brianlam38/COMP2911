@@ -117,17 +117,18 @@ public class ArrayListSet<E> implements Set<E> {
 	
 	/**
 	 * Equals check
-	 * @param o is the object to check
+	 * @param o is the object to check for equality
 	 * @return true or false
 	 */
 	@Override
-	public boolean equals(Object o){
+	public boolean equals(Object o) {
+		// "this" check
 		if (o == this) return true;
-		// other is empty
+		// "null" check
 		if (o == null) return false;
-		// other is not a Set
+		// "instanceof" check
 		if (!(o instanceof Set)) return false;
-		// compare all items in s to see if it in current set
+		// typecast object to type to compare with + check each object in collection
 		Set<?> s = (Set<?>) o;
 		for (Object item : s) {
 			if(!array.contains(item)) return false;
